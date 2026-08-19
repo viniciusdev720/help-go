@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>HelpGo | Painel do Prestador de Serviços</title>
+
+    <link rel="stylesheet" href="../css/tela-prestador.css">
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+    <header class="header">
+
+        <div class="logo-area">
+            <img src="../img p.png" width="85" height="55" alt="Logo HelpGo">
+            <div>
+                <h2>HelpGo <span>Pro</span></h2>
+                <small>Painel do Prestador</small>
+            </div>
+        </div>
+
+        <nav class="menu">
+            <a href="#" class="active">Início</a>
+            <a href="#solicitacoes">Chamados Recebidos</a>
+            <a href="#em-andamento">Em Andamento</a>
+            <a href="#meus-servicos">Meus Serviços</a>
+        </nav>
+
+        <div class="user-area">
+
+            <!-- Toggle de Disponibilidade -->
+            <div class="status-toggle-container" title="Clique para alterar seu status de atendimento">
+                <span class="status-label">Status:</span>
+                <button type="button" class="status-badge online" id="statusToggleBtn">
+                    <span class="status-dot"></span>
+                    <span id="statusText">Disponível</span>
+                </button>
+            </div>
+
+            <!-- Notificações -->
+            <button class="notification" id="notificationBtn" aria-label="Notificações">
+                🔔
+                <span id="notifBadge">3</span>
+            </button>
+
+            <!-- Perfil do Prestador -->
+            <div class="user">
+                <div class="avatar" id="providerAvatar">
+                    P
+                </div>
+
+                <div class="user-info">
+                    <strong id="providerName">Prestador</strong>
+                    <small>Profissional Verificado</small>
+                </div>
+
+                <button class="arrow" id="userMenuBtn" aria-label="Abrir menu do usuário">
+                    ▾
+                </button>
+            </div>
+
+            <!-- Menu Dropdown -->
+            <div class="user-menu" id="userMenu">
+                <a href="#perfil" id="btnPerfil">👤 Meu perfil profissional</a>
+                <a href="#meus-servicos">🔧 Especialidades e valores</a>
+                <a href="#" id="btnLogout">🚪 Sair</a>
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- ================= CONTEÚDO PRINCIPAL ================= -->
+    <main class="container">
+
+        <!-- ================= BANNER DE BOAS-VINDAS ================= -->
+        <section class="welcome">
+            <div class="welcome-text">
+                <span class="welcome-tag">
+                    Área do Prestador
+                </span>
+
+                <h1>
+                    Olá, <span id="welcomeProviderName">Profissional</span>! 👋
+                </h1>
+
+                <p>
+                    Confira as oportunidades de serviços disponíveis na sua região e gerencie seus atendimentos em tempo real.
+                </p>
+            </div>
+
+            <div class="welcome-icon">
+                <img src="../img p.png" width="125" height="80" alt="HelpGo Prestador">
+            </div>
+        </section>
+
+
+        <!-- ================= MÉTRICAS RÁPIDAS ================= -->
+        <section class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon icon-blue">
+                    📬
+                </div>
+                <div class="stat-info">
+                    <strong id="statTotalChamados">3</strong>
+                    <span>Novos Chamados</span>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon icon-green">
+                    ⭐
+                </div>
+                <div class="stat-info">
+                    <strong>4.9 / 5.0</strong>
+                    <span>Avaliação Média</span>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon icon-purple">
+                    ✅
+                </div>
+                <div class="stat-info">
+                    <strong>28</strong>
+                    <span>Serviços Concluídos</span>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon icon-orange">
+                    💼
+                </div>
+                <div class="stat-info">
+                    <strong id="statStatusDisplay">Online</strong>
+                    <span>Recebendo Propostas</span>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ================= CHAMADOS DISPONÍVEIS ================= -->
+        <section class="section" id="solicitacoes">
+
+            <div class="section-header">
+                <div>
+                    <h2>Chamados Disponíveis na Sua Região</h2>
+                    <p>Clientes aguardando seu orçamento ou confirmação</p>
+                </div>
+                <span class="badge-count" id="chamadosCount">3 solicitações abertas</span>
+            </div>
+
+            <div class="requests-grid" id="requestsGrid">
+
+                <!-- Card 1 -->
+                <div class="request-card-item" id="request-1">
+                    <div class="card-top">
+                        <div class="service-pill eletrica">
+                            ⚡ Instalação Elétrica
+                        </div>
+                        <span class="urgency-badge urgente">🟡 Urgente</span>
+                    </div>
+
+                    <h3 class="request-title">Troca de disjuntor e revisão no quadro de força</h3>
+                    <p class="request-desc">O disjuntor principal está desarmando frequentemente quando ligo o chuveiro. Preciso de uma avaliação técnica e substituição das peças com segurança.</p>
+
+                    <div class="request-meta">
+                        <div class="meta-item">
+                            <span>📍</span>
+                            <strong>Centro (a 2.4 km)</strong>
+                        </div>
+                        <div class="meta-item">
+                            <span>👤</span>
+                            <strong>Mariana S.</strong>
+                        </div>
+                        <div class="meta-item">
+                            <span>📅</span>
+                            <strong>Para hoje</strong>
+                        </div>
+                        <div class="meta-item">
+                            <span>💰</span>
+                            <strong class="budget-tag">R$ 150 - R$ 300</strong>
+                        </div>
+                    </div>
+
+                    <div class="card-actions">
+                        <button class="btn-action btn-accept" onclick="aceitarChamado('request-1', 'Instalação Elétrica', 'Mariana S.')">
+                            ✓ Aceitar Chamado
+                        </button>
+                        <button class="btn-action btn-details" onclick="abrirDetalhes('Instalação Elétrica', 'Mariana S.', 'Troca de disjuntor e revisão no quadro de força', 'Centro', 'R$ 150 - R$ 300')">
+                            Ver Detalhes
+                        </button>
+                        <button class="btn-action btn-decline" onclick="recusarChamado('request-1')">
+                            ✕ Recusar
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="request-card-item" id="request-2">
+                    <div class="card-top">
+                        <div class="service-pill encanamento">
+                            🔧 Encanamento / Hidráulica
+                        </div>
+                        <span class="urgency-badge emergencia">🔴 Emergência</span>
+                    </div>
+
+                    <h3 class="request-title">Vazamento na tubulação da pia da cozinha</h3>
+                    <p class="request-desc">Há um vazamento forte por baixo da bancada da pia que está molhando o armário. Preciso de reparo imediato para evitar danos maiores.</p>
+
+                    <div class="request-meta">
+                        <div class="meta-item">
+                            <span>📍</span>
+                            <strong>Jardim América (a 1.8 km)</strong>
+                        </div>
+                        <div class="meta-item">
+                            <span>👤</span>
+                            <strong>Roberto Ferreira</strong>
+                        </div>
+                        <div class="meta-item">
+                            <span>📅</span>
+                            <strong>Imediato</strong>
+                        </div>
+                        <div class="meta-item">
+                            <span>💰</span>
+                            <strong class="budget-tag">R$ 120 - R$ 250</strong>
+                        </div>
+                    </div>
+
+                    <div class="card-actions">
+                        <button class="btn-action btn-accept" onclick="aceitarChamado('request-2', 'Encanamento', 'Roberto Ferreira')">
+                            ✓ Aceitar Chamado
+                        </button>
+                        <button class="btn-action btn-details" onclick="abrirDetalhes('Encanamento', 'Roberto Ferreira', 'Vazamento na tubulação da pia da cozinha', 'Jardim América', 'R$ 120 - R$ 250')">
+                            Ver Detalhes
+                        </button>
+                        <button class="btn-action btn-decline" onclick="recusarChamado('request-2')">
+                            ✕ Recusar
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="request-card-item" id="request-3">
+                    <div class="card-top">
+                        <div class="service-pill manutencao">
+                            🛠️ Manutenção Geral
+                        </div>
+                        <span class="urgency-badge normal">🟢 Normal</span>
+                    </div>
+
+                    <h3 class="request-title">Instalação de suporte de TV e prateleiras</h3>
+                    <p class="request-desc">Fixação de suporte articulado para TV de 55 polegadas na sala e fixação de 3 prateleiras de madeira no quarto.</p>
+
+                    <div class="request-meta">
+                        <div class="meta-item">
+                            <span>📍</span>
+                            <strong>Vila Nova (a 3.8 km)</strong>
+                        </div>
+                        <div class="meta-item">
+                            <span>👤</span>
+                            <strong>Camila Duarte</strong>
+                        </div>
+                        <div class="meta-item">
+                            <span>📅</span>
+                            <strong>Neste fim de semana</strong>
+                        </div>
+                        <div class="meta-item">
+                            <span>💰</span>
+                            <strong class="budget-tag">R$ 180 - R$ 350</strong>
+                        </div>
+                    </div>
+
+                    <div class="card-actions">
+                        <button class="btn-action btn-accept" onclick="aceitarChamado('request-3', 'Manutenção Geral', 'Camila Duarte')">
+                            ✓ Aceitar Chamado
+                        </button>
+                        <button class="btn-action btn-details" onclick="abrirDetalhes('Manutenção Geral', 'Camila Duarte', 'Instalação de suporte de TV e prateleiras', 'Vila Nova', 'R$ 180 - R$ 350')">
+                            Ver Detalhes
+                        </button>
+                        <button class="btn-action btn-decline" onclick="recusarChamado('request-3')">
+                            ✕ Recusar
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= SERVIÇOS EM ANDAMENTO ================= -->
+        <section class="section" id="em-andamento">
+
+            <div class="section-header">
+                <div>
+                    <h2>Serviços em Andamento</h2>
+                    <p>Acompanhe os atendimentos aceitos e entre em contato com o cliente</p>
+                </div>
+            </div>
+
+            <div class="active-services-list" id="activeServicesList">
+
+                <div class="active-item">
+                    <div class="active-item-icon">
+                        ⚡
+                    </div>
+
+                    <div class="active-item-info">
+                        <strong>Troca de Fiação e Tomadas - Sala e Quartos</strong>
+                        <span>Cliente: <strong>Lucas Mendes</strong> | Local: Bela Vista (2.1 km)</span>
+                    </div>
+
+                    <div class="active-status-tag em-andamento">
+                        Em Andamento
+                    </div>
+
+                    <div class="active-item-actions">
+                        <button class="btn-chat" onclick="alert('Iniciando conversa no WhatsApp com o cliente Lucas Mendes...')">
+                            💬 WhatsApp
+                        </button>
+                        <button class="btn-finish" onclick="concluirServico(this)">
+                            ✓ Concluir
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= MEUS SERVIÇOS / PERFIL ================= -->
+        <section class="section" id="meus-servicos">
+
+            <div class="section-header">
+                <div>
+                    <h2>Minhas Especialidades e Perfil</h2>
+                    <p>Gerencie as áreas de atuação em que você atende</p>
+                </div>
+            </div>
+
+            <div class="provider-profile-card">
+                <div class="profile-header">
+                    <div class="profile-avatar-large" id="profileAvatarLarge">
+                        P
+                    </div>
+                    <div>
+                        <h3 id="profileNameDisplay">Prestador HelpGo</h3>
+                        <p id="profileCategoryDisplay">Profissional Especializado</p>
+                        <div class="rating-stars">
+                            ⭐⭐⭐⭐⭐ <strong>4.9</strong> (28 avaliações)
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="divider">
+
+                <div class="profile-details-grid">
+                    <div>
+                        <small>E-mail Cadastrado:</small>
+                        <strong id="profileEmailDisplay">-</strong>
+                    </div>
+                    <div>
+                        <small>Disponibilidade:</small>
+                        <strong id="profileAvailabilityDisplay">🟢 Online para novos pedidos</strong>
+                    </div>
+                    <div>
+                        <small>Área de Atuação:</small>
+                        <strong>Raio de até 20 km</strong>
+                    </div>
+                    <div>
+                        <small>Garantia de Atendimento:</small>
+                        <strong>Selo Verificado HelpGo 🛡️</strong>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= MODAL DE DETALHES ================= -->
+    <div class="modal" id="modalDetalhes">
+        <div class="modal-content">
+            <button class="close-modal" id="closeModalBtn">×</button>
+
+            <div class="modal-header">
+                <div class="modal-icon">📋</div>
+                <h2 id="modalTitle">Detalhes da Solicitação</h2>
+            </div>
+
+            <div class="modal-body">
+                <div class="modal-info-row">
+                    <span>Cliente:</span>
+                    <strong id="modalClientName">-</strong>
+                </div>
+                <div class="modal-info-row">
+                    <span>Localização:</span>
+                    <strong id="modalLocation">-</strong>
+                </div>
+                <div class="modal-info-row">
+                    <span>Orçamento Estimado:</span>
+                    <strong id="modalBudget" class="budget-tag">-</strong>
+                </div>
+                <div class="modal-desc-box">
+                    <span>Descrição Completa:</span>
+                    <p id="modalDescription">-</p>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn-action btn-accept" id="modalAcceptBtn">✓ Aceitar este Chamado</button>
+                <button class="btn-action btn-details" id="modalCloseActionBtn">Fechar</button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ================= TOAST DE NOTIFICAÇÃO ================= -->
+    <div class="toast" id="toastMessage">
+        <span id="toastText">Ação realizada com sucesso!</span>
+    </div>
+
+
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- Configuração do Supabase -->
+    <script src="../js/supabase.js"></script>
+    <!-- Script da Tela do Prestador -->
+    <script src="../js/tela-prestador.js"></script>
+
+</body>
+
+</html>
