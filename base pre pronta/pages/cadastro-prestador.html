@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HelpGo | Cadastro de Prestador de Serviço</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+    <form id="formCadastroPrestador">
+
+        <h1>Cadastro de Prestador</h1>
+        <p class="subtitle">Cadastre-se para oferecer seus serviços</p>
+
+        <input type="text" id="nome" name="nome" placeholder="Nome Completo" required>
+        <input type="tel" id="telefone" name="telefone" placeholder="Telefone / WhatsApp" required>
+        <input type="text" id="cpf" name="cpf" placeholder="CPF" maxlength="14" required>
+        <input type="text" id="cep" name="cep" placeholder="CEP (somente números)" maxlength="9" required>
+        <input type="text" id="endereco" name="endereco" placeholder="Endereço / Logradouro" required>
+        <input type="text" id="numero" name="numero" placeholder="Número" required>
+        <input type="text" id="cidade" name="cidade" placeholder="Cidade" required>
+        
+        <select id="estado" name="estado" required>
+            <option value="" disabled selected>Selecione o Estado (UF)</option>
+            <option value="AC">Acre (AC)</option>
+            <option value="AL">Alagoas (AL)</option>
+            <option value="AP">Amapá (AP)</option>
+            <option value="AM">Amazonas (AM)</option>
+            <option value="BA">Bahia (BA)</option>
+            <option value="CE">Ceará (CE)</option>
+            <option value="DF">Distrito Federal (DF)</option>
+            <option value="ES">Espírito Santo (ES)</option>
+            <option value="GO">Goiás (GO)</option>
+            <option value="MA">Maranhão (MA)</option>
+            <option value="MT">Mato Grosso (MT)</option>
+            <option value="MS">Mato Grosso do Sul (MS)</option>
+            <option value="MG">Minas Gerais (MG)</option>
+            <option value="PA">Pará (PA)</option>
+            <option value="PB">Paraíba (PB)</option>
+            <option value="PR">Paraná (PR)</option>
+            <option value="PE">Pernambuco (PE)</option>
+            <option value="PI">Piauí (PI)</option>
+            <option value="RJ">Rio de Janeiro (RJ)</option>
+            <option value="RN">Rio Grande do Norte (RN)</option>
+            <option value="RS">Rio Grande do Sul (RS)</option>
+            <option value="RO">Rondônia (RO)</option>
+            <option value="RR">Roraima (RR)</option>
+            <option value="SC">Santa Catarina (SC)</option>
+            <option value="SP">São Paulo (SP)</option>
+            <option value="SE">Sergipe (SE)</option>
+            <option value="TO">Tocantins (TO)</option>
+        </select>
+
+        <select id="cat_serv" name="cat_serv" required>
+            <option value="" disabled selected>Selecione sua Categoria de Serviço</option>
+            <option value="Manutenção">Manutenção e Reparos Gerais</option>
+            <option value="Encanamento">Encanamento / Hidráulica</option>
+            <option value="Ar-condicionado">Ar-condicionado e Climatização</option>
+            <option value="Limpeza">Limpeza e Diarista</option>
+            <option value="Eletricista">Eletricista / Instalações Elétricas</option>
+            <option value="Pintura">Pintura e Acabamento</option>
+            <option value="Montagem">Montador de Móveis</option>
+            <option value="Outros">Outros Serviços</option>
+        </select>
+
+        <textarea id="descricao" name="descricao" placeholder="Breve descrição da sua experiência e serviços prestados"></textarea>
+        
+        <input type="email" id="email" name="email" placeholder="E-mail" required>
+        <input type="password" id="senha" name="senha" placeholder="Senha (mínimo 6 caracteres)" minlength="6" required>
+        <input type="password" id="Csenha" name="Csenha" placeholder="Confirme sua senha" minlength="6" required>
+
+        <div class="button-group">
+            <button type="submit" class="btn">Cadastrar</button>
+            <button type="reset" class="btn btn-secondary-action">Limpar</button>
+        </div>
+
+        <p id="mensagem" class="mensagem"></p>
+
+        <a href="./selecao-cadastro.html" class="btn-link">← Voltar a escolha de cadastro</a>
+
+    </form>
+
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- Configuração do Supabase -->
+    <script src="../js/supabase.js"></script>
+    <!-- Script de Cadastro do Prestador -->
+    <script src="../js/cadastro-prestador.js"></script>
+
+</body>
+
+</html>

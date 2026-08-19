@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>HelpGo | Área do Cliente</title>
+
+    <link rel="stylesheet" href="../css/tela-cliente.css">
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+
+    <header class="header">
+
+        <div class="logo-area">
+            
+            <img src="../img p.png" width="85" height="55">
+            <div>
+                <h2>HelpGo</h2>
+                <span>Serviços perto de você</span>
+            </div>
+        </div>
+
+        <nav class="menu">
+
+            <a href="#" class="active">Início</a>
+
+            <a href="#solicitacoes">
+                Minhas solicitações
+            </a>
+
+            <a href="#profissionais">
+                Profissionais
+            </a>
+
+        </nav>
+
+        <div class="user-area">
+
+            <button class="notification">
+                🔔
+                <span>2</span>
+            </button>
+
+            <div class="user">
+
+                <div class="avatar" id="userAvatar">
+                    C
+                </div>
+
+                <div class="user-info">
+                    <strong id="userName">Cliente</strong>
+                    <small>Cliente</small>
+                </div>
+
+                <button class="arrow" id="userMenuBtn">
+                    ▾
+                </button>
+
+            </div>
+
+            <div class="user-menu" id="userMenu">
+
+                <a href="#">👤 Meu perfil</a>
+
+                <a href="#">⚙ Configurações</a>
+
+                <a href="#" id="logout">
+                    🚪 Sair
+                </a>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- ================= CONTEÚDO ================= -->
+
+    <main class="container">
+
+
+        <!-- ================= BEM-VINDO ================= -->
+
+        <section class="welcome">
+
+            <div>
+
+                <span class="welcome-tag">
+                    Bem-vindo ao HelpGo
+                </span>
+
+                <h1>
+                    Qual serviço você
+                    <span>precisa hoje?</span>
+                </h1>
+
+                <p>
+                    Encontre profissionais qualificados perto de você
+                    e solicite um serviço de forma rápida e segura.
+                </p>
+
+            </div>
+
+            <div class="welcome-icon">
+                <img src="../img p.png" width="125" height="80">
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= SOLICITAR SERVIÇO ================= -->
+
+        <section class="request-card" id="solicitar">
+
+            <div class="card-title">
+
+                
+
+                <div>
+
+                    <h2>Solicitar um serviço</h2>
+
+                    <p>
+                        Conte o que você precisa e encontre o profissional ideal.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <form id="serviceForm">
+
+
+                <!-- SERVIÇO -->
+
+                <div class="form-group">
+
+                    <label for="service">
+                        Qual serviço você precisa?
+                    </label>
+
+                    <select id="service" required>
+
+                        <option value="">
+                            Selecione um serviço
+                        </option>
+
+                        <option value="eletricista">
+                            ⚡ Eletricista
+                        </option>
+
+                        <option value="encanador">
+                            🔧 Encanador
+                        </option>
+
+                        <option value="pintor">
+                            🎨 Pintor
+                        </option>
+
+                        <option value="ar-condicionado">
+                            ❄️ Instalação de ar-condicionado
+                        </option>
+
+                        <option value="chaveiro">
+                            🔑 Chaveiro
+                        </option>
+
+                        <option value="marceneiro">
+                            🪚 Marceneiro
+                        </option>
+
+                        <option value="pedreiro">
+                            🧱 Pedreiro
+                        </option>
+
+                        <option value="jardineiro">
+                            🌱 Jardineiro
+                        </option>
+
+                        <option value="limpeza">
+                            🧹 Limpeza
+                        </option>
+
+                        <option value="tecnico">
+                            💻 Técnico de informática
+                        </option>
+
+                        <option value="outro">
+                            ➕ Outro serviço
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- DESCRIÇÃO -->
+
+                <div class="form-group">
+
+                    <label for="description">
+                        📝 Descreva o que você precisa
+                    </label>
+
+                    <textarea
+                        id="description"
+                        maxlength="500"
+                        placeholder="Ex.: Preciso consertar um vazamento na cozinha..."
+                        required></textarea>
+
+                    <div class="counter">
+                        <span id="counter">0</span>/500
+                    </div>
+
+                </div>
+
+
+                <div class="form-row">
+
+
+                    <!-- LOCALIZAÇÃO -->
+
+                    <div class="form-group">
+
+                        <label for="cep">
+                            📍 CEP do local
+                        </label>
+
+                        <div class="input-button">
+
+                            <input
+                                type="text"
+                                id="cep"
+                                maxlength="9"
+                                placeholder="00000-000"
+                                required>
+
+                            <button
+                                type="button"
+                                id="searchCep">
+                                Buscar
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- URGÊNCIA -->
+
+                    <div class="form-group">
+
+                        <label for="urgency">
+                            ⏱ Urgência
+                        </label>
+
+                        <select id="urgency">
+
+                            <option value="normal">
+                                🟢 Normal
+                            </option>
+
+                            <option value="urgente">
+                                🟡 Urgente
+                            </option>
+
+                            <option value="emergencia">
+                                🔴 Emergência
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ENDEREÇO -->
+
+                <div
+                    class="address-box"
+                    id="addressBox">
+
+                    <span>📍</span>
+
+                    <div>
+
+                        <strong id="addressText">
+                            Informe seu CEP para localizar o endereço.
+                        </strong>
+
+                        <small>
+                            O endereço será utilizado para encontrar profissionais próximos.
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ORÇAMENTO -->
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label for="budget">
+                            $ Faixa de orçamento
+                        </label>
+
+                        <select id="budget">
+
+                            <option value="">
+                                Prefiro receber orçamentos
+                            </option>
+
+                            <option value="100">
+                                Até R$ 100
+                            </option>
+
+                            <option value="250">
+                                R$ 100 - R$ 250
+                            </option>
+
+                            <option value="500">
+                                R$ 250 - R$ 500
+                            </option>
+
+                            <option value="1000">
+                                R$ 500 - R$ 1.000
+                            </option>
+
+                            <option value="1000+">
+                                Acima de R$ 1.000
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="date">
+                            📅 Quando precisa?
+                        </label>
+
+                        <input
+                            type="date"
+                            id="date"
+                            required>
+
+                    </div>
+
+                </div>
+
+
+                <!-- BOTÃO -->
+
+                <button
+                    type="submit"
+                    class="request-button">
+
+                    🔎 Encontrar profissionais
+
+                </button>
+
+            </form>
+
+        </section>
+
+
+
+        <!-- ================= SERVIÇOS POPULARES ================= -->
+
+        <section class="section">
+
+            <div class="section-header">
+
+                <div>
+
+                    <h2>Serviços populares</h2>
+
+                    <p>Encontre rapidamente o que precisa</p>
+
+                </div>
+
+                <a href="#solicitar">
+                    Ver todos →
+                </a>
+
+            </div>
+
+
+            <div class="services-grid">
+
+                <button class="service-card" data-service="eletricista">
+
+                    <div class="service-icon green">
+                        ⚡
+                    </div>
+
+                    <strong>Eletricista</strong>
+
+                    <span>Profissionais verificados</span>
+
+                </button>
+
+
+                <button class="service-card" data-service="encanador">
+
+                    <div class="service-icon blue">
+                        🔧
+                    </div>
+
+                    <strong>Encanador</strong>
+
+                    <span>Reparos hidráulicos</span>
+
+                </button>
+
+
+                <button class="service-card" data-service="pintor">
+
+                    <div class="service-icon orange">
+                        🎨
+                    </div>
+
+                    <strong>Pintor</strong>
+
+                    <span>Pintura residencial</span>
+
+                </button>
+
+
+                <button class="service-card" data-service="ar-condicionado">
+
+                    <div class="service-icon cyan">
+                        ❄️
+                    </div>
+
+                    <strong>Ar-condicionado</strong>
+
+                    <span>Instalação e manutenção</span>
+
+                </button>
+
+
+                <button class="service-card" data-service="chaveiro">
+
+                    <div class="service-icon purple">
+                        🔑
+                    </div>
+
+                    <strong>Chaveiro</strong>
+
+                    <span>Atendimento rápido</span>
+
+                </button>
+
+
+                <button class="service-card" data-service="limpeza">
+
+                    <div class="service-icon yellow">
+                        🧹
+                    </div>
+
+                    <strong>Limpeza</strong>
+
+                    <span>Para sua casa</span>
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= SOLICITAÇÕES ================= -->
+
+        <section
+            class="section"
+            id="solicitacoes">
+
+            <div class="section-header">
+
+                <div>
+
+                    <h2>Minhas solicitações</h2>
+
+                    <p>Acompanhe seus serviços</p>
+
+                </div>
+
+                <a href="#">
+                    Ver histórico →
+                </a>
+
+            </div>
+
+
+            <div class="requests">
+
+
+                <div class="request-item">
+
+                    <div class="request-service-icon">
+                        ⚡
+                    </div>
+
+                    <div class="request-info">
+
+                        <strong>
+                            Instalação elétrica
+                        </strong>
+
+                        <span>
+                            Solicitado recentemente
+                        </span>
+
+                    </div>
+
+                    <div class="status pending">
+                        Aguardando profissional
+                    </div>
+
+                    <button class="details">
+                        Ver detalhes
+                    </button>
+
+                </div>
+
+
+                <div class="empty-request">
+
+                    <div>
+                        📋
+                    </div>
+
+                    <strong>
+                        Você não possui outras solicitações
+                    </strong>
+
+                    <span>
+                        Quando solicitar um novo serviço,
+                        ele aparecerá aqui.
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= SEGURANÇA ================= -->
+
+        <section class="security">
+
+            <div class="security-icon">
+                🛡️
+            </div>
+
+            <div>
+
+                <h3>
+                    Contrate com segurança
+                </h3>
+
+                <p>
+                    No HelpGo você encontra profissionais avaliados,
+                    verificados e próximos da sua localização.
+                </p>
+
+            </div>
+
+            <div class="security-items">
+
+                <span>✓ Profissionais avaliados</span>
+
+                <span>✓ Sistema de avaliações</span>
+
+                <span>✓ Localização aproximada</span>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- ================= MODAL ================= -->
+
+    <div
+        class="modal"
+        id="modal">
+
+        <div class="modal-content">
+
+            <button
+                class="close-modal"
+                id="closeModal">
+                ×
+            </button>
+
+            <div class="modal-icon">
+                🔎
+            </div>
+
+            <h2>
+                Procurando profissionais
+            </h2>
+
+            <p>
+                Estamos encontrando profissionais disponíveis
+                próximos a você.
+            </p>
+
+            <div class="loading"></div>
+
+            <span class="loading-text">
+                Buscando...
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- Configuração do Supabase -->
+    <script src="../js/supabase.js"></script>
+    <!-- Script da Tela do Cliente -->
+    <script src="../js/tela-cliente.js"></script>
+
+</body>
+
+</html>
