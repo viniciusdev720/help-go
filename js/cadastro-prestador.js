@@ -1,162 +1,631 @@
 // ==========================================
-// CADASTRO DE PRESTADOR DE SERVIÇO - HELPGo
+// HELPGo
+// CADASTRO DE PRESTADOR DE SERVIÇO
 // ==========================================
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
+
     const form = document.getElementById("formCadastroPrestador");
     const mensagem = document.getElementById("mensagem");
     const cepInput = document.getElementById("cep");
 
-    function exibirMensagem(texto, tipo) {
+
+    // ==========================================
+    // MOSTRAR MENSAGEM
+    // ==========================================
+
+    function exibirMensagem(texto, tipo = "") {
+
         if (!mensagem) return;
+
         mensagem.textContent = texto;
-        mensagem.className = "mensagem " + (tipo || "");
+        mensagem.className = "mensagem " + tipo;
     }
 
+
     // ==========================================
-    // BUSCAR ENDEREÇO PELO CEP (ViaCEP)
+    // BUSCAR CEP
     // ==========================================
+
     if (cepInput) {
-        cepInput.addEventListener("blur", async function () {
-            const cep = this.value.replace(/\D/g, "");
+
+        cepInput.addEventListener("blur", async () => {
+
+            const cep = cepInput.value.replace(/\D/g, "");
 
             if (cep.length !== 8) {
+
                 if (cep.length > 0) {
-                    alert("Digite um CEP válido com 8 dígitos.");
+                    exibirMensagem(
+                        "Digite um CEP válido com 8 números.",
+                        "erro"
+                    );
                 }
+
                 return;
             }
 
             try {
-                const resposta = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+
+                const resposta = await fetch(
+                    `https://viacep.com.br/ws/${cep}/json/`
+                );
+
+                if (!resposta.ok) {
+                    throw new Error("Erro ao consultar o ViaCEP.");
+                }
+
                 const dados = await resposta.json();
 
                 if (dados.erro) {
-                    alert("CEP não encontrado.");
+
+                    exibirMensagem(
+                        "CEP não encontrado.",
+                        "erro"
+                    );
+
+                    document.getElementById("endereco").value = "";
                     document.getElementById("cidade").value = "";
                     document.getElementById("estado").value = "";
-                    document.getElementById("endereco").value = "";
+
                     return;
                 }
 
-                document.getElementById("cidade").value = dados.localidade || "";
-                document.getElementById("estado").value = dados.uf || "";
-                document.getElementById("endereco").value = dados.logradouro ? `${dados.logradouro}, ${dados.bairro || ""}` : "";
 
-                const numeroInput = document.getElementById("numero");
-                if (numeroInput) numeroInput.focus();
+                // Preencher endereço
+
+                document.getElementById("endereco").value =
+                    dados.logradouro || "";
+
+                document.getElementById("cidade").value =
+                    dados.localidade || "";
+
+                document.getElementById("estado").value =
+                    dados.uf || "";
+
+
+                // Ir para número
+
+                document.getElementById("numero").focus();
+
 
             } catch (erro) {
+
                 console.error("Erro no ViaCEP:", erro);
-                alert("Erro ao consultar o CEP. Verifique sua conexão.");
+
+                exibirMensagem(
+                    "Não foi possível consultar o CEP.",
+                    "erro"
+                );
             }
         });
     }
 
+
     // ==========================================
-    // SUBMIT DO FORMULÁRIO
+    // CADASTRO
     // ==========================================
-    if (form) {
-        form.addEventListener("submit", async function (event) {
-            event.preventDefault();
 
-            exibirMensagem("Realizando cadastro...", "sucesso");
+    if (!form) {
 
-            const nome = document.getElementById("nome").value.trim();
-            const telefone = document.getElementById("telefone").value.trim();
-            const cpf = document.getElementById("cpf").value.trim();
-            const cep = document.getElementById("cep").value.replace(/\D/g, "");
-            const cidade = document.getElementById("cidade").value.trim();
-            const estado = document.getElementById("estado").value;
-            const endereco = document.getElementById("endereco").value.trim();
-            const numero = document.getElementById("numero").value.trim();
-            const categoria = document.getElementById("cat_serv").value;
-            const descricao = document.getElementById("descricao").value.trim();
-            const email = document.getElementById("email").value.trim();
-            const senha = document.getElementById("senha").value;
-            const confirmarSenha = document.getElementById("Csenha").value;
+        console.error(
+            "Formulário #formCadastroPrestador não encontrado."
+        );
 
-            // Validações
-            if (!nome || !telefone || !cpf || !cep || !cidade || !estado || !endereco || !numero || !categoria || !email || !senha) {
-                exibirMensagem("Por favor, preencha todos os campos obrigatórios.", "erro");
+        return;
+    }
+
+
+    form.addEventListener("submit", async (event) => {
+
+        event.preventDefault();
+
+
+        // ==========================================
+        // PEGAR DADOS DO FORMULÁRIO
+        // ==========================================
+
+        const nome =
+            document.getElementById("nome").value.trim();
+
+        const telefone =
+            document.getElementById("telefone").value.trim();
+
+        const cpf =
+            document.getElementById("cpf").value.trim();
+
+        const cep =
+            document.getElementById("cep").value
+                .replace(/\D/g, "");
+
+        const endereco =
+            document.getElementById("endereco").value.trim();
+
+        const numero =
+            document.getElementById("numero").value.trim();
+
+        const cidade =
+            document.getElementById("cidade").value.trim();
+
+        const estado =
+            document.getElementById("estado").value;
+
+        const categoria =
+            document.getElementById("cat_serv").value;
+
+        const descricao =
+            document.getElementById("descricao").value.trim();
+
+        const email =
+            document.getElementById("email").value.trim();
+
+        const senha =
+            document.getElementById("senha").value;
+
+        const confirmarSenha =
+            document.getElementById("Csenha").value;
+
+
+        // ==========================================
+        // VALIDAÇÕES
+        // ==========================================
+
+        if (
+            !nome ||
+            !telefone ||
+            !cpf ||
+            !cep ||
+            !endereco ||
+            !numero ||
+            !cidade ||
+            !estado ||
+            !categoria ||
+            !email ||
+            !senha ||
+            !confirmarSenha
+        ) {
+
+            exibirMensagem(
+                "Preencha todos os campos obrigatórios.",
+                "erro"
+            );
+
+            return;
+        }
+
+
+        if (cep.length !== 8) {
+
+            exibirMensagem(
+                "Digite um CEP válido.",
+                "erro"
+            );
+
+            return;
+        }
+
+
+        if (senha !== confirmarSenha) {
+
+            exibirMensagem(
+                "As senhas não coincidem.",
+                "erro"
+            );
+
+            return;
+        }
+
+
+        if (senha.length < 6) {
+
+            exibirMensagem(
+                "A senha precisa ter pelo menos 6 caracteres.",
+                "erro"
+            );
+
+            return;
+        }
+
+
+        // ==========================================
+        // VERIFICAR SUPABASE
+        // ==========================================
+
+        if (
+            typeof supabaseClient === "undefined" ||
+            !supabaseClient
+        ) {
+
+            exibirMensagem(
+                "Erro: conexão com o Supabase não encontrada.",
+                "erro"
+            );
+
+            console.error(
+                "supabaseClient não existe."
+            );
+
+            return;
+        }
+
+
+        try {
+
+            // ==========================================
+            // 1. CRIAR CONTA NO SUPABASE AUTH
+            // ==========================================
+
+            exibirMensagem(
+                "Criando sua conta...",
+                "sucesso"
+            );
+
+
+            const {
+                data: authData,
+                error: authError
+            } = await supabaseClient.auth.signUp({
+
+                email: email,
+
+                password: senha
+            });
+
+
+            if (authError) {
+
+                console.error(
+                    "Erro no Supabase Auth:",
+                    authError
+                );
+
+                exibirMensagem(
+                    "Erro ao criar conta: " +
+                    authError.message,
+                    "erro"
+                );
+
                 return;
             }
 
-            if (senha !== confirmarSenha) {
-                exibirMensagem("As senhas não coincidem.", "erro");
+
+            const usuario = authData.user;
+
+
+            if (!usuario) {
+
+                exibirMensagem(
+                    "Não foi possível criar o usuário.",
+                    "erro"
+                );
+
                 return;
             }
 
-            if (senha.length < 6) {
-                exibirMensagem("A senha deve ter pelo menos 6 caracteres.", "erro");
-                return;
-            }
 
-            if (!supabaseClient) {
-                exibirMensagem("Erro ao conectar com o serviço de cadastro.", "erro");
-                return;
-            }
+            console.log(
+                "Usuário Auth criado:",
+                usuario.id
+            );
 
-            exibirMensagem("Criando sua conta de prestador...", "sucesso");
 
-            try {
-                // Criar usuário no Supabase Auth com dados do prestador
-                const { data, error } = await supabaseClient.auth.signUp({
+            // ==========================================
+            // 2. SALVAR NA TABELA usuarios
+            // ==========================================
+
+            exibirMensagem(
+                "Salvando seus dados...",
+                "sucesso"
+            );
+
+
+            const {
+                error: erroUsuario
+            } = await supabaseClient
+                .from("usuarios")
+                .insert({
+
+                    id: usuario.id,
+
+                    nome: nome,
+
                     email: email,
-                    password: senha,
-                    options: {
-                        data: {
-                            nome: nome,
-                            telefone: telefone,
-                            cpf: cpf,
-                            categoria_servico: categoria,
-                            descricao: descricao,
-                            tipo: "prestador"
-                        }
-                    }
+
+                    telefone: telefone,
+
+                    cpf: cpf,
+
+                    tipo: "prestador"
                 });
 
-                if (error) {
-                    console.error("Erro Supabase:", error);
-                    exibirMensagem("Erro ao criar conta: " + error.message, "erro");
-                    return;
-                }
 
-                const usuario = data.user;
-                if (!usuario) {
-                    exibirMensagem("Não foi possível criar o usuário.", "erro");
-                    return;
-                }
+            if (erroUsuario) {
 
-                // Salvar endereço na tabela enderecos
-                exibirMensagem("Salvando endereço e dados...", "sucesso");
+                console.error(
+                    "Erro na tabela usuarios:",
+                    erroUsuario
+                );
 
-                const { error: erroEndereco } = await supabaseClient
-                    .from("enderecos")
-                    .insert({
-                        usuario_id: usuario.id,
-                        cep: cep,
-                        estado: estado,
-                        cidade: cidade,
-                        rua: endereco,
-                        numero: numero
-                    });
+                exibirMensagem(
+                    "Erro ao salvar usuário: " +
+                    erroUsuario.message,
+                    "erro"
+                );
 
-                if (erroEndereco) {
-                    console.warn("Aviso ao salvar endereço:", erroEndereco);
-                }
-
-                exibirMensagem("Cadastro de prestador realizado com sucesso! Redirecionando...", "sucesso");
-                form.reset();
-
-                setTimeout(() => {
-                    window.location.href = "./login.html";
-                }, 2000);
-
-            } catch (err) {
-                console.error("Erro geral no cadastro:", err);
-                exibirMensagem("Ocorreu um erro ao processar o cadastro.", "erro");
+                return;
             }
-        });
-    }
+
+
+            console.log(
+                "Usuário salvo em usuarios."
+            );
+
+
+            // ==========================================
+            // 3. SALVAR NA TABELA prestadores
+            // ==========================================
+
+            exibirMensagem(
+                "Criando seu perfil de prestador...",
+                "sucesso"
+            );
+
+
+            const {
+                error: erroPrestador
+            } = await supabaseClient
+                .from("prestadores")
+                .insert({
+
+                    id: usuario.id,
+
+                    descricao: descricao,
+
+                    avaliacao: 0,
+
+                    total_avaliacoes: 0,
+
+                    ativo: true
+                });
+
+
+            if (erroPrestador) {
+
+                console.error(
+                    "Erro na tabela prestadores:",
+                    erroPrestador
+                );
+
+                exibirMensagem(
+                    "Erro ao salvar prestador: " +
+                    erroPrestador.message,
+                    "erro"
+                );
+
+                return;
+            }
+
+
+            console.log(
+                "Prestador salvo em prestadores."
+            );
+
+
+            // ==========================================
+            // 4. SALVAR ENDEREÇO
+            // ==========================================
+
+            exibirMensagem(
+                "Salvando seu endereço...",
+                "sucesso"
+            );
+
+
+            const {
+                error: erroEndereco
+            } = await supabaseClient
+                .from("enderecos")
+                .insert({
+
+                    usuario_id: usuario.id,
+
+                    cep: cep,
+
+                    estado: estado,
+
+                    cidade: cidade,
+
+                    rua: endereco,
+
+                    numero: numero
+                });
+
+
+            if (erroEndereco) {
+
+                console.error(
+                    "Erro na tabela enderecos:",
+                    erroEndereco
+                );
+
+                exibirMensagem(
+                    "Erro ao salvar endereço: " +
+                    erroEndereco.message,
+                    "erro"
+                );
+
+                return;
+            }
+
+
+            console.log(
+                "Endereço salvo em enderecos."
+            );
+
+
+            // ==========================================
+            // 5. PROCURAR O SERVIÇO PELO NOME
+            // ==========================================
+
+            exibirMensagem(
+                "Registrando seu serviço...",
+                "sucesso"
+            );
+
+
+            const {
+                data: servico,
+                error: erroBuscaServico
+            } = await supabaseClient
+                .from("servicos")
+                .select("id")
+                .eq("nome", categoria)
+                .maybeSingle();
+
+
+            if (erroBuscaServico) {
+
+                console.error(
+                    "Erro ao procurar serviço:",
+                    erroBuscaServico
+                );
+
+                exibirMensagem(
+                    "Erro ao encontrar categoria de serviço: " +
+                    erroBuscaServico.message,
+                    "erro"
+                );
+
+                return;
+            }
+
+
+            if (!servico) {
+
+                console.error(
+                    "Serviço não encontrado:",
+                    categoria
+                );
+
+                exibirMensagem(
+                    "A categoria '" +
+                    categoria +
+                    "' não existe na tabela serviços.",
+                    "erro"
+                );
+
+                return;
+            }
+
+
+            console.log(
+                "Serviço encontrado:",
+                servico
+            );
+
+
+            // ==========================================
+            // 6. RELACIONAR PRESTADOR + SERVIÇO
+            // ==========================================
+
+            const {
+                error: erroPrestadorServico
+            } = await supabaseClient
+                .from("prestador_servicos")
+                .insert({
+
+                    prestador_id: usuario.id,
+
+                    servico_id: servico.id,
+
+                    experiencia: descricao
+                });
+
+
+            if (erroPrestadorServico) {
+
+                console.error(
+                    "Erro em prestador_servicos:",
+                    erroPrestadorServico
+                );
+
+                exibirMensagem(
+                    "Erro ao registrar serviço: " +
+                    erroPrestadorServico.message,
+                    "erro"
+                );
+
+                return;
+            }
+
+
+            console.log(
+                "Prestador relacionado ao serviço."
+            );
+
+
+            // ==========================================
+            // CADASTRO FINALIZADO
+            // ==========================================
+
+            exibirMensagem(
+                "Cadastro realizado com sucesso!",
+                "sucesso"
+            );
+
+
+            console.log(
+                "================================="
+            );
+
+            console.log(
+                "CADASTRO COMPLETO!"
+            );
+
+            console.log(
+                "ID:",
+                usuario.id
+            );
+
+            console.log(
+                "Categoria:",
+                categoria
+            );
+
+            console.log(
+                "================================="
+            );
+
+
+            form.reset();
+
+
+            // ==========================================
+            // REDIRECIONAR
+            // ==========================================
+
+            setTimeout(() => {
+
+                window.location.href =
+                    "./login.html";
+
+            }, 2000);
+
+
+        } catch (erro) {
+
+            console.error(
+                "ERRO GERAL:",
+                erro
+            );
+
+            exibirMensagem(
+                "Ocorreu um erro inesperado: " +
+                erro.message,
+                "erro"
+            );
+        }
+
+    });
+
 });
