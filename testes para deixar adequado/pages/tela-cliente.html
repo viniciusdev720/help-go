@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>HelpGo | Área do Cliente</title>
+
+    <link rel="stylesheet" href="../css/tela-cliente.css">
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+    <header class="header">
+
+        <div class="logo-area">
+            <img src="../img p.png" width="85" height="55" alt="Logo HelpGo">
+            <div>
+                <h2>HelpGo</h2>
+                <span>Serviços perto de você</span>
+            </div>
+        </div>
+
+        <nav class="menu">
+            <a href="#" class="active">Início</a>
+            <a href="#solicitar">Solicitar</a>
+            <a href="#solicitacoes">Minhas solicitações</a>
+            <a href="#profissionais">Profissionais</a>
+        </nav>
+
+        <div class="user-area">
+
+            <!-- NOTIFICAÇÕES -->
+            <div class="notif-wrapper">
+                <button class="notification" id="notifBtnClient" aria-label="Notificações">
+                    🔔
+                    <span id="notifBadgeClient">0</span>
+                </button>
+
+                <div class="notif-dropdown" id="notifDropdownClient">
+                    <div class="notif-header">
+                        <strong>Notificações</strong>
+                        <button type="button" id="btnMarcarLidasClient">Marcar lidas</button>
+                    </div>
+                    <div class="notif-list" id="notifListClient">
+                        <!-- Notificações dinâmicas -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- PERFIL DO USUÁRIO -->
+            <div class="user">
+                <div class="avatar" id="userAvatar">
+                    C
+                </div>
+
+                <div class="user-info">
+                    <strong id="userName">Cliente</strong>
+                    <small>Cliente</small>
+                </div>
+
+                <button class="arrow" id="userMenuBtn" aria-label="Menu do usuário">
+                    ▾
+                </button>
+            </div>
+
+            <div class="user-menu" id="userMenu">
+                <a href="#solicitacoes">📋 Minhas solicitações</a>
+                <a href="#profissionais">⭐ Profissionais avaliados</a>
+                <a href="#" id="logout">🚪 Sair</a>
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- ================= CONTEÚDO ================= -->
+    <main class="container">
+
+        <!-- ================= BARRA DE ATIVIDADE AO VIVO ================= -->
+        <div class="live-activity-bar">
+            <div class="live-pulse-badge">
+                <span class="live-dot"></span>
+                <span id="liveOnlineCount">18 Profissionais Online Agora</span>
+            </div>
+            <div class="live-ticker-text">
+                <span>⚡ Atendimento rápido com profissionais verificados na sua região</span>
+            </div>
+        </div>
+
+
+        <!-- ================= BEM-VINDO ================= -->
+        <section class="welcome">
+
+            <div>
+                <span class="welcome-tag">
+                    Bem-vindo ao HelpGo
+                </span>
+
+                <h1>
+                    Qual serviço você
+                    <span>precisa hoje?</span>
+                </h1>
+
+                <p>
+                    Encontre profissionais qualificados perto de você
+                    e solicite um serviço de forma rápida, segura e com avaliação comprovada.
+                </p>
+            </div>
+
+            <div class="welcome-icon">
+                <img src="../img p.png" width="125" height="80" alt="HelpGo">
+            </div>
+
+        </section>
+
+
+        <!-- ================= SOLICITAR SERVIÇO ================= -->
+        <section class="request-card" id="solicitar">
+
+            <div class="card-title">
+                <div>
+                    <h2>Solicitar um serviço</h2>
+                    <p>
+                        Conte o que você precisa e conecte-se aos profissionais disponíveis na sua região.
+                    </p>
+                </div>
+            </div>
+
+            <form id="serviceForm">
+
+                <!-- SERVIÇO -->
+                <div class="form-group">
+                    <label for="service">
+                        Qual serviço você precisa?
+                    </label>
+
+                    <select id="service" required>
+                        <option value="">Selecione um serviço</option>
+                        <option value="eletricista">⚡ Eletricista</option>
+                        <option value="encanador">🔧 Encanador</option>
+                        <option value="pintor">🎨 Pintor</option>
+                        <option value="ar-condicionado">❄️ Instalação de ar-condicionado</option>
+                        <option value="chaveiro">🔑 Chaveiro</option>
+                        <option value="marceneiro">🪚 Marceneiro</option>
+                        <option value="pedreiro">🧱 Pedreiro</option>
+                        <option value="jardineiro">🌱 Jardineiro</option>
+                        <option value="limpeza">🧹 Limpeza</option>
+                        <option value="tecnico">💻 Técnico de informática</option>
+                        <option value="outro">➕ Outro serviço</option>
+                    </select>
+                </div>
+
+                <!-- DESCRIÇÃO -->
+                <div class="form-group">
+                    <label for="description">
+                        📝 Descreva o que você precisa
+                    </label>
+
+                    <textarea
+                        id="description"
+                        maxlength="500"
+                        placeholder="Ex.: Preciso consertar um vazamento na cozinha..."
+                        required></textarea>
+
+                    <div class="counter">
+                        <span id="counter">0</span>/500
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <!-- LOCALIZAÇÃO -->
+                    <div class="form-group">
+                        <label for="cep">
+                            📍 CEP do local
+                        </label>
+
+                        <div class="input-button">
+                            <input
+                                type="text"
+                                id="cep"
+                                maxlength="9"
+                                placeholder="00000-000"
+                                required>
+
+                            <button
+                                type="button"
+                                id="searchCep">
+                                Buscar
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- URGÊNCIA -->
+                    <div class="form-group">
+                        <label for="urgency">
+                            ⏱ Urgência
+                        </label>
+
+                        <select id="urgency">
+                            <option value="normal">🟢 Normal</option>
+                            <option value="urgente">🟡 Urgente</option>
+                            <option value="emergencia">🔴 Emergência</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- ENDEREÇO -->
+                <div class="address-box" id="addressBox">
+                    <span>📍</span>
+                    <div>
+                        <strong id="addressText">
+                            Informe seu CEP para localizar o endereço.
+                        </strong>
+                        <small>
+                            O endereço será utilizado para encontrar profissionais próximos.
+                        </small>
+                    </div>
+                </div>
+
+                <!-- ORÇAMENTO E DATA -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="budget">
+                            💰 Faixa de orçamento estimada
+                        </label>
+
+                        <select id="budget">
+                            <option value="A combinar">Prefiro receber orçamentos</option>
+                            <option value="Até R$ 100">Até R$ 100</option>
+                            <option value="R$ 100 - R$ 250">R$ 100 - R$ 250</option>
+                            <option value="R$ 250 - R$ 500">R$ 250 - R$ 500</option>
+                            <option value="R$ 500 - R$ 1.000">R$ 500 - R$ 1.000</option>
+                            <option value="Acima de R$ 1.000">Acima de R$ 1.000</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="date">
+                            📅 Quando precisa?
+                        </label>
+
+                        <input
+                            type="date"
+                            id="date"
+                            required>
+                    </div>
+                </div>
+
+                <!-- BOTÃO -->
+                <button
+                    type="submit"
+                    class="request-button">
+                    🔎 Encontrar profissionais disponíveis
+                </button>
+
+            </form>
+
+        </section>
+
+
+        <!-- ================= SERVIÇOS POPULARES ================= -->
+        <section class="section">
+
+            <div class="section-header">
+                <div>
+                    <h2>Serviços populares</h2>
+                    <p>Encontre rapidamente o que precisa</p>
+                </div>
+                <a href="#solicitar">Ver todos →</a>
+            </div>
+
+            <div class="services-grid">
+                <button class="service-card" data-service="eletricista">
+                    <div class="service-icon green">⚡</div>
+                    <strong>Eletricista</strong>
+                    <span>Profissionais verificados</span>
+                </button>
+
+                <button class="service-card" data-service="encanador">
+                    <div class="service-icon blue">🔧</div>
+                    <strong>Encanador</strong>
+                    <span>Reparos hidráulicos</span>
+                </button>
+
+                <button class="service-card" data-service="pintor">
+                    <div class="service-icon orange">🎨</div>
+                    <strong>Pintor</strong>
+                    <span>Pintura residencial</span>
+                </button>
+
+                <button class="service-card" data-service="ar-condicionado">
+                    <div class="service-icon cyan">❄️</div>
+                    <strong>Ar-condicionado</strong>
+                    <span>Instalação e manutenção</span>
+                </button>
+
+                <button class="service-card" data-service="chaveiro">
+                    <div class="service-icon purple">🔑</div>
+                    <strong>Chaveiro</strong>
+                    <span>Atendimento 24h</span>
+                </button>
+
+                <button class="service-card" data-service="limpeza">
+                    <div class="service-icon yellow">🧹</div>
+                    <strong>Limpeza</strong>
+                    <span>Para sua casa ou pós-obra</span>
+                </button>
+            </div>
+
+        </section>
+
+
+        <!-- ================= PROFISSIONAIS VERIFICADOS / NOTAS ================= -->
+        <section class="section" id="profissionais">
+
+            <div class="section-header">
+                <div>
+                    <h2>Profissionais em Destaque na Sua Região ⭐</h2>
+                    <p>Profissionais verificados, com notas reais de clientes e disponíveis agora</p>
+                </div>
+
+                <!-- Filtros de categoria -->
+                <div class="prestadores-filter-pills" id="prestadoresFilter">
+                    <button class="pill-btn active" data-category="todos">Todos</button>
+                    <button class="pill-btn" data-category="eletricista">⚡ Eletricistas</button>
+                    <button class="pill-btn" data-category="encanador">🔧 Encanadores</button>
+                    <button class="pill-btn" data-category="pintor">🎨 Pintores</button>
+                    <button class="pill-btn" data-category="ar-condicionado">❄️ Ar-Condicionado</button>
+                    <button class="pill-btn" data-category="chaveiro">🔑 Chaveiros</button>
+                    <button class="pill-btn" data-category="limpeza">🧹 Limpeza</button>
+                </div>
+            </div>
+
+            <!-- Grid dinâmico de prestadores -->
+            <div class="prestadores-grid" id="prestadoresGrid">
+                <!-- Preenchido dinamicamente via JS -->
+            </div>
+
+        </section>
+
+
+        <!-- ================= MINHAS SOLICITAÇÕES ================= -->
+        <section class="section" id="solicitacoes">
+
+            <div class="section-header">
+                <div>
+                    <h2>Minhas solicitações</h2>
+                    <p>Acompanhe o andamento dos seus pedidos em tempo real</p>
+                </div>
+                <span class="badge-count" id="clientRequestsCount">0 solicitações</span>
+            </div>
+
+            <!-- Lista de solicitações dinâmicas -->
+            <div class="requests" id="clientRequestsList">
+                <!-- Preenchido dinamicamente via JS -->
+            </div>
+
+        </section>
+
+
+        <!-- ================= SEGURANÇA ================= -->
+        <section class="security">
+            <div class="security-icon">
+                🛡️
+            </div>
+
+            <div>
+                <h3>Contrate com segurança total</h3>
+                <p>
+                    No HelpGo todos os profissionais passam por verificação cadastral, possuem avaliações públicas e histórico de atendimentos na comunidade.
+                </p>
+            </div>
+
+            <div class="security-items">
+                <span>✓ Profissionais avaliados com estrelas</span>
+                <span>✓ Status online e resposta rápida</span>
+                <span>✓ Garantia de satisfação HelpGo</span>
+            </div>
+        </section>
+
+    </main>
+
+
+    <!-- ================= MODAL DE CONFIRMAÇÃO / BUSCA DE PROFISSIONAIS ================= -->
+    <div class="modal" id="modal">
+        <div class="modal-content modal-search-content">
+            <button class="close-modal" id="closeModal">×</button>
+
+            <div class="modal-search-header">
+                <div class="radar-animation">
+                    <div class="radar-ring"></div>
+                    <div class="radar-ring delay"></div>
+                    <div class="modal-icon">🔎</div>
+                </div>
+
+                <h2 id="modalSearchTitle">Procurando profissionais disponíveis...</h2>
+                <p id="modalSearchSubtitle">
+                    Encontramos profissionais qualificados próximos ao seu endereço prontos para atender!
+                </p>
+            </div>
+
+            <!-- Lista de profissionais correspondentes encontrados -->
+            <div class="matching-pros-container" id="matchingProsContainer">
+                <!-- Inserido dinamicamente via JS -->
+            </div>
+
+            <div class="modal-search-actions">
+                <button type="button" class="btn-confirm-order" id="btnConfirmOrder">
+                    🚀 Confirmar e Enviar Pedido para Prestadores
+                </button>
+                <button type="button" class="btn-cancel-order" id="btnCancelOrder">
+                    Voltar e Editar
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ================= MODAL DE PERFIL COMPLETO DO PRESTADOR ================= -->
+    <div class="modal" id="modalPerfilPrestador">
+        <div class="modal-content modal-profile-content">
+            <button class="close-modal" id="closeModalPerfil">×</button>
+
+            <div class="profile-modal-header" id="profileModalHeader">
+                <!-- Conteúdo dinâmico do cabeçalho do perfil -->
+            </div>
+
+            <div class="profile-modal-body">
+                <!-- Biografia e Informações -->
+                <div class="profile-section">
+                    <h4>Sobre o Profissional</h4>
+                    <p id="profileModalBio">-</p>
+                    <div class="profile-badges" id="profileModalBadges"></div>
+                </div>
+
+                <!-- Resumo de Avaliações e Notas -->
+                <div class="profile-section">
+                    <h4>Avaliações de Clientes</h4>
+                    <div class="ratings-overview" id="profileRatingsOverview">
+                        <!-- Score grande e resumo de estrelas -->
+                    </div>
+
+                    <!-- Lista de Comentários de Avaliações -->
+                    <div class="reviews-list" id="profileReviewsList">
+                        <!-- Comentários reais de clientes -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="profile-modal-footer">
+                <button class="btn-hire-pro" id="btnHirePro">
+                    ⚡ Solicitar Serviço com este Profissional
+                </button>
+                <button class="btn-close-pro" id="btnClosePro">
+                    Fechar
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ================= MODAL DE AVALIAÇÃO / NOTA DO PRESTADOR ================= -->
+    <div class="modal" id="modalAvaliacao">
+        <div class="modal-content modal-review-content">
+            <button class="close-modal" id="closeModalAvaliacao">×</button>
+
+            <div class="review-modal-header">
+                <div class="review-icon-big">⭐</div>
+                <h2>Avaliar Atendimento</h2>
+                <p id="reviewPrestadorName">Como foi o serviço realizado por Carlos Silva?</p>
+            </div>
+
+            <form id="formAvaliacao">
+                <!-- Seletor de Estrelas Interativas -->
+                <div class="star-rating-box">
+                    <label>Sua Nota:</label>
+                    <div class="star-rating-interactive" id="starRatingInteractive">
+                        <span class="star" data-val="1">★</span>
+                        <span class="star" data-val="2">★</span>
+                        <span class="star" data-val="3">★</span>
+                        <span class="star" data-val="4">★</span>
+                        <span class="star active" data-val="5">★</span>
+                    </div>
+                    <span class="rating-text-feedback" id="ratingTextFeedback">5.0 - Excelente! ⭐⭐⭐⭐⭐</span>
+                </div>
+
+                <!-- Tags Rápidas de Elogio -->
+                <div class="tags-quick-select">
+                    <label>O que mais se destacou?</label>
+                    <div class="tags-options" id="tagsOptions">
+                        <button type="button" class="tag-opt active" data-tag="Super Pontual">⏰ Super Pontual</button>
+                        <button type="button" class="tag-opt active" data-tag="Trabalho Impecável">💎 Trabalho Impecável</button>
+                        <button type="button" class="tag-opt" data-tag="Preço Justo">💰 Preço Justo</button>
+                        <button type="button" class="tag-opt" data-tag="Muito Educado">🤝 Muito Educado</button>
+                        <button type="button" class="tag-opt" data-tag="Rápido e Eficiente">⚡ Rápido e Eficiente</button>
+                    </div>
+                </div>
+
+                <!-- Comentário do Cliente -->
+                <div class="form-group">
+                    <label for="reviewComment">Deixe seu depoimento sobre o profissional:</label>
+                    <textarea id="reviewComment" rows="3" placeholder="Conte como foi o atendimento, qualidade e pontualidade..." required></textarea>
+                </div>
+
+                <div class="review-modal-actions">
+                    <button type="submit" class="btn-submit-review">
+                        ✓ Enviar Avaliação
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- ================= TOAST DE NOTIFICAÇÃO FLUTUANTE ================= -->
+    <div class="toast-client" id="toastMessageClient">
+        <span class="toast-icon" id="toastIconClient">🔔</span>
+        <div class="toast-body">
+            <strong id="toastTitleClient">Notificação</strong>
+            <p id="toastTextClient">Ação realizada com sucesso!</p>
+        </div>
+    </div>
+
+
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- Configuração do Supabase -->
+    <script src="../js/supabase.js"></script>
+    <!-- Data Store & Sincronização em Tempo Real -->
+    <script src="../js/helpgo-store.js"></script>
+    <!-- Script da Tela do Cliente -->
+    <script src="../js/tela-cliente.js"></script>
+
+</body>
+
+</html>

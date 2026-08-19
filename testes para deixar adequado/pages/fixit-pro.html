@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FixIt Pro - Mercado de Serviços</title>
+<style>
+  :root{
+    --bg: #0a0e1a;
+    --bg-elev: #10162a;
+    --bg-elev-2: #141b32;
+    --border: #232b45;
+    --text: #eef1fb;
+    --text-dim: #8992ad;
+    --purple: #8b5cf6;
+    --pink: #d946ef;
+    --green: #22d97a;
+    --blue: #3b82f6;
+    --radius: 12px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    min-height:100vh;
+  }
+  a{color:inherit; text-decoration:none;}
+  button{font-family:inherit; cursor:pointer;}
+
+  /* NAV */
+  header{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 32px;
+    border-bottom:1px solid var(--border);
+    background: rgba(10,14,26,0.9);
+    position:sticky; top:0; z-index:50;
+    flex-wrap:wrap; gap:12px;
+  }
+  .brand{display:flex; align-items:center; gap:14px;}
+  .logo-icon{
+    width:42px; height:42px; border-radius:12px;
+    background: linear-gradient(135deg, var(--purple), var(--pink));
+    display:flex; align-items:center; justify-content:center;
+    font-size:20px;
+    box-shadow: 0 0 20px rgba(139,92,246,0.4);
+  }
+  .brand-name{font-size:20px; font-weight:700; letter-spacing:0.3px;}
+  .brand-name span{color:var(--purple);}
+  .badge-live{
+    display:flex; align-items:center; gap:6px;
+    background: rgba(34,217,122,0.12);
+    border:1px solid rgba(34,217,122,0.35);
+    color:var(--green);
+    padding:6px 12px; border-radius:999px;
+    font-size:12px; font-weight:600;
+  }
+  .dot-pulse{width:7px; height:7px; border-radius:50%; background:var(--green); animation:pulse 1.6s infinite;}
+  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.3;}}
+
+  nav.links{display:flex; align-items:center; gap:8px; flex-wrap:wrap;}
+  .nav-btn{
+    display:flex; align-items:center; gap:6px;
+    padding:10px 16px; border-radius:10px;
+    font-size:14px; font-weight:600; color:var(--text-dim);
+    border:1px solid transparent; background:none;
+  }
+  .nav-btn:hover{background:var(--bg-elev); color:var(--text);}
+  .nav-btn.primary{
+    background: linear-gradient(135deg, var(--purple), var(--pink));
+    color:#fff;
+  }
+  .nav-btn.outline{border:1px solid var(--border); color:var(--text);}
+
+  .header-right{display:flex; align-items:center; gap:10px;}
+  .icon-btn{
+    width:38px; height:38px; border-radius:10px;
+    border:1px solid var(--border); background:var(--bg-elev);
+    display:flex; align-items:center; justify-content:center;
+    color:var(--text-dim); font-size:14px; position:relative;
+  }
+  .icon-btn .badge-count{
+    position:absolute; top:-5px; right:-5px;
+    background:#ef4444; color:#fff; font-size:10px; font-weight:700;
+    width:16px; height:16px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .user-chip{
+    display:flex; align-items:center; gap:10px;
+    padding:6px 12px 6px 6px; border-radius:999px;
+    border:1px solid var(--border); background:var(--bg-elev);
+  }
+  .avatar{
+    width:32px; height:32px; border-radius:50%;
+    background: linear-gradient(135deg, #f472b6, #a78bfa);
+  }
+  .user-chip .name{font-size:13px; font-weight:700; line-height:1.2;}
+  .user-chip .tag{font-size:11px; color:var(--purple); font-weight:600;}
+
+  /* HERO */
+  .hero{
+    text-align:center; padding:64px 24px 32px;
+    max-width:900px; margin:0 auto;
+  }
+  .hero h1{
+    font-size:44px; font-weight:800; line-height:1.2; letter-spacing:-0.5px;
+  }
+  .hero h1 .grad{
+    background: linear-gradient(135deg, var(--purple), var(--pink));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .hero p{
+    margin-top:18px; color:var(--text-dim); font-size:16px; line-height:1.6;
+    max-width:680px; margin-left:auto; margin-right:auto;
+  }
+
+  /* SEARCH */
+  .search-card{
+    max-width:900px; margin:32px auto 0; padding:24px;
+    background: var(--bg-elev); border:1px solid var(--border);
+    border-radius:16px;
+  }
+  .search-row{
+    display:flex; gap:12px; align-items:center;
+    background: var(--bg); border:1px solid var(--border);
+    border-radius:12px; padding:6px 6px 6px 18px;
+  }
+  .search-row input{
+    flex:1; background:none; border:none; outline:none;
+    color:var(--text); font-size:15px; padding:10px 0;
+  }
+  .search-row input::placeholder{color:var(--text-dim);}
+  .search-btn{
+    display:flex; align-items:center; gap:8px;
+    background: linear-gradient(135deg, var(--purple), var(--pink));
+    color:#fff; font-weight:700; font-size:14px;
+    padding:12px 20px; border:none; border-radius:9px;
+    white-space:nowrap;
+  }
+  .specialties{
+    display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+    margin-top:18px;
+  }
+  .specialties .label{font-size:13px; color:var(--text-dim); margin-right:4px;}
+  .chip{
+    display:flex; align-items:center; gap:6px;
+    padding:8px 16px; border-radius:999px;
+    background: var(--bg); border:1px solid var(--border);
+    font-size:13px; font-weight:600; color:var(--text);
+  }
+  .chip:hover{border-color:var(--purple); background: rgba(139,92,246,0.08);}
+
+  /* MAIN GRID */
+  .main-grid{
+    max-width:1400px; margin:40px auto; padding:0 24px;
+    display:grid; grid-template-columns:280px 1fr; gap:20px;
+  }
+  .filters{
+    background: var(--bg-elev); border:1px solid var(--border);
+    border-radius:16px; padding:20px; height:fit-content;
+  }
+  .filters-head{
+    display:flex; justify-content:space-between; align-items:center;
+    margin-bottom:20px;
+  }
+  .filters-head h3{font-size:15px; font-weight:700;}
+  .filters-head .clear{font-size:13px; color:var(--purple); font-weight:600; background:none; border:none;}
+  .filter-group{margin-bottom:22px;}
+  .filter-group label{
+    display:block; font-size:13px; color:var(--text-dim); font-weight:600; margin-bottom:10px;
+  }
+  select.filter-select{
+    width:100%; padding:12px; border-radius:10px;
+    background:var(--bg); border:1px solid var(--border); color:var(--text);
+    font-size:13px;
+  }
+  .range-row{display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;}
+  .range-row .val{color:var(--purple); font-weight:700; font-size:13px;}
+  input[type=range]{width:100%; accent-color:var(--purple);}
+
+  /* MAP */
+  .map-panel{
+    background: var(--bg-elev); border:1px solid var(--border);
+    border-radius:16px; overflow:hidden;
+  }
+  .map-head{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 20px; border-bottom:1px solid var(--border); flex-wrap:wrap; gap:10px;
+  }
+  .map-head .title{display:flex; align-items:center; gap:10px; font-weight:700; font-size:14px;}
+  .live-dot{width:8px; height:8px; border-radius:50%; background:var(--green); animation:pulse 1.6s infinite;}
+  .pill{
+    background: rgba(139,92,246,0.15); color:#c4b5fd;
+    padding:5px 12px; border-radius:999px; font-size:12px; font-weight:700;
+  }
+  .locate-btn{
+    display:flex; align-items:center; gap:6px;
+    padding:8px 14px; border-radius:9px;
+    background:var(--bg); border:1px solid var(--border);
+    font-size:12px; font-weight:600; color:var(--text);
+  }
+  .map-area{
+    position:relative; height:460px;
+    background:
+      radial-gradient(circle at 20% 30%, rgba(59,130,246,0.08), transparent 40%),
+      radial-gradient(circle at 80% 70%, rgba(139,92,246,0.1), transparent 40%),
+      repeating-linear-gradient(0deg, #131a30 0px, #131a30 1px, #0d1224 1px, #0d1224 60px),
+      repeating-linear-gradient(90deg, #131a30 0px, #131a30 1px, #0d1224 1px, #0d1224 60px);
+  }
+  .zoom-ctrl{
+    position:absolute; top:16px; left:16px;
+    display:flex; flex-direction:column; gap:1px;
+    border-radius:8px; overflow:hidden; border:1px solid var(--border);
+  }
+  .zoom-ctrl button{
+    width:34px; height:34px; background:var(--bg-elev-2); color:var(--text);
+    border:none; font-size:16px; font-weight:700;
+  }
+  .zoom-ctrl button:hover{background:var(--bg-elev);}
+  .pin{
+    position:absolute; width:32px; height:32px; border-radius:50% 50% 50% 0;
+    transform:translate(-50%,-100%) rotate(45deg);
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 4px 12px rgba(0,0,0,0.4);
+    border:2px solid rgba(255,255,255,0.2);
+  }
+  .pin span{transform:rotate(-45deg); color:#fff; font-weight:800; font-size:13px;}
+  .pin.p1{background:var(--purple); top:58%; left:52%;}
+  .pin.p2{background:var(--blue); top:80%; left:62%;}
+  .pin.p3{background:var(--pink); top:88%; left:57%;}
+
+  @media(max-width:900px){
+    .main-grid{grid-template-columns:1fr;}
+    .hero h1{font-size:30px;}
+    header{padding:14px 18px;}
+    nav.links{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <div class="logo-icon">🔧</div>
+    <div class="brand-name">FixIt<span>PRO</span></div>
+    <div class="badge-live"><span class="dot-pulse"></span> REDE AO VIVO</div>
+  </div>
+
+  <nav class="links">
+    <button class="nav-btn primary">✨ Explorar</button>
+    <button class="nav-btn">🪄 IA Recomendador</button>
+    <button class="nav-btn">↻ Solicitações</button>
+    <button class="nav-btn outline">💳 Quero Trabalhar</button>
+    <button class="nav-btn outline">👤 Modo Cliente ▾</button>
+  </nav>
+
+  <div class="header-right">
+    <div class="icon-btn">BR</div>
+    <div class="icon-btn">🌙</div>
+    <div class="icon-btn">🔔<span class="badge-count">3</span></div>
+    <div class="user-chip">
+      <div class="avatar"></div>
+      <div>
+        <div class="name">Mariana Silva</div>
+        <div class="tag">Cliente VIP</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <h1>Soluções Rápidas & <span class="grad">Profissionais Verificados</span> perto de você</h1>
+  <p>Encontre eletricistas, encanadores, pintores e mais de 20 especialidades com orçamento garantido por IA e GPS em tempo real.</p>
+</section>
+
+<div class="search-card">
+  <div class="search-row">
+    <input type="text" placeholder="Ex: 'Preciso consertar um vazamento de água na cozinha hoje à tarde'">
+    <button class="search-btn">⚡ Buscar com IA</button>
+  </div>
+  <div class="specialties">
+    <span class="label">Especialidades Populares:</span>
+    <span class="chip">⚡ Eletricista</span>
+    <span class="chip">🔧 Encanador</span>
+    <span class="chip">🎨 Pintor</span>
+    <span class="chip">🪑 Montador de Móveis</span>
+    <span class="chip">❄️ Ar Condicionado</span>
+    <span class="chip">🔑 Chaveiro</span>
+  </div>
+</div>
+
+<div class="main-grid">
+  <aside class="filters">
+    <div class="filters-head">
+      <h3>⚙️ Filtros Avançados</h3>
+      <button class="clear">Limpar</button>
+    </div>
+
+    <div class="filter-group">
+      <label>📁 Categoria de Serviço</label>
+      <select class="filter-select">
+        <option>Todas as 20 Categoria(s)</option>
+        <option>Eletricista</option>
+        <option>Encanador</option>
+        <option>Pintor</option>
+      </select>
+    </div>
+
+    <div class="filter-group">
+      <div class="range-row">
+        <label style="margin:0">📍 Raio de Distância</label>
+        <span class="val">15 km</span>
+      </div>
+      <input type="range" min="1" max="50" value="15">
+    </div>
+
+    <div class="filter-group">
+      <div class="range-row">
+        <label style="margin:0">⭐ Avaliação Mínima</label>
+        <span class="val">4.5+</span>
+      </div>
+      <input type="range" min="0" max="5" step="0.5" value="4.5">
+    </div>
+
+    <div class="filter-group">
+      <label>💰 Faixa de Preço</label>
+      <select class="filter-select">
+        <option>Qualquer valor</option>
+        <option>Até R$ 100</option>
+        <option>R$ 100 - R$ 300</option>
+        <option>Acima de R$ 300</option>
+      </select>
+    </div>
+  </aside>
+
+  <div class="map-panel">
+    <div class="map-head">
+      <div class="title"><span class="live-dot"></span> Mapa Interativo de Profissionais em Tempo Real
+        <span class="pill">8 Profissionais Próximos</span>
+      </div>
+      <button class="locate-btn">📍 Minha Localização</button>
+    </div>
+    <div class="map-area">
+      <div class="zoom-ctrl">
+        <button>+</button>
+        <button>−</button>
+      </div>
+      <div class="pin p1"><span>A</span></div>
+      <div class="pin p2"><span>V</span></div>
+      <div class="pin p3"><span>M</span></div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
