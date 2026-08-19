@@ -42,10 +42,22 @@
             </div>
 
             <!-- Notificações -->
-            <button class="notification" id="notificationBtn" aria-label="Notificações">
-                🔔
-                <span id="notifBadge">3</span>
-            </button>
+            <div class="notif-wrapper">
+                <button class="notification" id="notificationBtn" aria-label="Notificações">
+                    🔔
+                    <span id="notifBadge">0</span>
+                </button>
+
+                <div class="notif-dropdown" id="notifDropdownProvider">
+                    <div class="notif-header">
+                        <strong>Notificações</strong>
+                        <button type="button" id="btnMarcarLidasProvider">Marcar lidas</button>
+                    </div>
+                    <div class="notif-list" id="notifListProvider">
+                        <!-- Preenchido via JS -->
+                    </div>
+                </div>
+            </div>
 
             <!-- Perfil do Prestador -->
             <div class="user">
@@ -433,6 +445,8 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <!-- Configuração do Supabase -->
     <script src="../js/supabase.js"></script>
+    <!-- Data Store & Sincronização em Tempo Real -->
+    <script src="../js/helpgo-store.js"></script>
     <!-- Script da Tela do Prestador -->
     <script src="../js/tela-prestador.js"></script>
 
