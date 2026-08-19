@@ -1,9 +1,0 @@
-# Sistema e IDEs
-.DS_Store
-Thumbs.db
-.vscode/
-.idea/
-
-# Logs e dependências (se houver no futuro)
-node_modules/
-*.log
