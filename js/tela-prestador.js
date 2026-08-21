@@ -158,7 +158,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (pedidosAbertos.length === 0) {
             requestsGrid.innerHTML = `
                 <div style="background: white; border: 1px dashed #d1d5db; border-radius: 14px; padding: 40px; text-align: center; color: #6b7280; grid-column: 1 / -1;">
-                    <div style="font-size: 32px; margin-bottom: 8px;">🎉</div>
+                    <div style="font-size: 32px; margin-bottom: 8px;"></div>
                     <strong>Nenhum chamado aberto pendente no momento</strong>
                     <p style="font-size: 13px; margin-top: 4px;">Assim que um cliente solicitar um serviço na sua região, ele aparecerá aqui instantaneamente.</p>
                 </div>
@@ -190,19 +190,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     <div class="request-meta">
                         <div class="meta-item">
-                            <span>📍</span>
+                            <span></span>
                             <strong>${p.endereco.split("-")[0] || 'Na sua região'}</strong>
                         </div>
                         <div class="meta-item">
-                            <span>👤</span>
+                            <span></span>
                             <strong>${p.clienteNome}</strong>
                         </div>
                         <div class="meta-item">
-                            <span>📅</span>
+                            <span></span>
                             <strong>${p.data || 'A combinar'}</strong>
                         </div>
                         <div class="meta-item">
-                            <span>💰</span>
+                            <span></span>
                             <strong class="budget-tag">${p.orcamento}</strong>
                         </div>
                     </div>
@@ -235,7 +235,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (emAndamento.length === 0) {
             activeServicesList.innerHTML = `
                 <div style="background: white; border: 1px dashed #d1d5db; border-radius: 14px; padding: 30px; text-align: center; color: #6b7280; width: 100%;">
-                    <div style="font-size: 28px; margin-bottom: 6px;">💼</div>
+                    <div style="font-size: 28px; margin-bottom: 6px;"></div>
                     <strong>Nenhum serviço em andamento no momento</strong>
                     <p style="font-size: 13px; margin-top: 4px;">Aceite um dos chamados acima para iniciar o atendimento.</p>
                 </div>
@@ -245,9 +245,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         activeServicesList.innerHTML = emAndamento.map(p => `
             <div class="active-item" id="active-req-${p.id}">
-                <div class="active-item-icon">
-                    🛠️
-                </div>
+                
 
                 <div class="active-item-info">
                     <strong>${p.servico} - ${p.descricao.substring(0, 45)}...</strong>

@@ -224,16 +224,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 <div class="pro-card-meta">
                     <div class="pro-meta-tag">
-                        <span>📍</span> ${p.distancia}
+                        <span></span> ${p.distancia}
                     </div>
                     <div class="pro-meta-tag">
-                        <span>⚡</span> ${p.tempoResposta}
+                        <span></span> ${p.tempoResposta}
                     </div>
                     <div class="pro-meta-tag">
-                        <span>💼</span> ${p.servicosConcluidos} serviços
+                        <span></span> ${p.servicosConcluidos} serviços
                     </div>
                     <div class="pro-meta-tag highlight">
-                        <span>💰</span> ${p.precoMedio}
+                        <span></span> ${p.precoMedio}
                     </div>
                 </div>
 
@@ -241,10 +241,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 <div class="pro-card-actions">
                     <button class="btn-pro-profile" data-id="${p.id}">
-                        ⭐ Ver Perfil e Notas
+                         Ver Perfil e Notas
                     </button>
                     <button class="btn-pro-hire" data-id="${p.id}" data-category="${p.categoria}">
-                        ⚡ Solicitar
+                         Solicitar
                     </button>
                 </div>
             `;
@@ -649,7 +649,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (k.includes("limp")) return "🧹";
         if (k.includes("marcen")) return "🪚";
         if (k.includes("pedreir")) return "🧱";
-        return "🛠️";
+        
     }
 
     /* =======================================================
