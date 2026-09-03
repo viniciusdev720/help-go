@@ -56,13 +56,16 @@
 
         <select id="cat_serv" name="cat_serv" required>
             <option value="" disabled selected>Selecione sua Categoria de Serviço</option>
-            <option value="Manutenção">Manutenção e Reparos Gerais</option>
-            <option value="Encanamento">Encanamento / Hidráulica</option>
-            <option value="Ar-condicionado">Ar-condicionado e Climatização</option>
-            <option value="Limpeza">Limpeza e Diarista</option>
             <option value="Eletricista">Eletricista / Instalações Elétricas</option>
-            <option value="Pintura">Pintura e Acabamento</option>
-            <option value="Montagem">Montador de Móveis</option>
+            <option value="Encanador">Encanador / Reparos Hidráulicos</option>
+            <option value="Pintor">Pintura e Acabamento</option>
+            <option value="Ar-condicionado">Ar-condicionado e Climatização</option>
+            <option value="Chaveiro">Chaveiro</option>
+            <option value="Limpeza">Limpeza e Diarista</option>
+            <option value="Marceneiro">Marceneiro / Montador de Móveis</option>
+            <option value="Pedreiro">Pedreiro / Pequenas Reformas</option>
+            <option value="Jardineiro">Jardineiro / Paisagismo</option>
+            <option value="Técnico de Informática">Técnico de Informática</option>
             <option value="Outros">Outros Serviços</option>
         </select>
 
@@ -86,9 +89,15 @@
     <!-- Supabase CDN -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <!-- Configuração do Supabase -->
-    <script src="../js/supabase.js"></script>
+    <script src="../js/config/supabase.js"></script>
+    <!-- Camada de Serviços -->
+    <script src="../js/services/servicos-service.js"></script>
+    <!-- Autenticação -->
+    <script src="../js/auth/auth-service.js"></script>
+    <!-- Guardião de Rotas -->
+    <script src="../js/auth/guard.js"></script>
     <!-- Script de Cadastro do Prestador -->
-    <script src="../js/cadastro-prestador.js"></script>
+    <script src="../js/auth/cadastro-prestador.js"></script>
 
 </body>
 
