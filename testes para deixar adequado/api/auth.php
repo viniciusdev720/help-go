@@ -14,6 +14,7 @@ switch ($action) {
     // 1. CADASTRO DE CLIENTE
     // =======================================================
     case 'cadastro_cliente':
+    case 'cadastro-cliente':
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
             json_response(['error' => 'Método inválido.'], 405);
         }
@@ -88,6 +89,7 @@ switch ($action) {
     // 2. CADASTRO DE PRESTADOR DE SERVIÇOS
     // =======================================================
     case 'cadastro_prestador':
+    case 'cadastro-prestador':
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
             json_response(['error' => 'Método inválido.'], 405);
         }

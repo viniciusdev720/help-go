@@ -3,29 +3,7 @@
 // HELPGO - CONEXÃO COM BANCO DE DADOS E NÚCLEO DA API (PHP + SQLite)
 // =======================================================
 
-// Permitir requisições CORS com credenciais
-$origin = $_SERVER['HTTP_ORIGIN'] ?? '*';
-header("Access-Control-Allow-Origin: $origin");
-header("Access-Control-Allow-Credentials: true");
-header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
-header("Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With");
 
-if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
-    http_response_code(200);
-    exit;
-}
-
-// Inicializar Sessão PHP se ainda não iniciada
-if (session_status() === PHP_SESSION_NONE) {
-    // Configurações de cookie de sessão
-    session_set_cookie_params([
-        'lifetime' => 86400 * 30, // 30 dias
-        'path' => '/',
-        'httponly' => true,
-        'samesite' => 'Lax'
-    ]);
-    session_start();
-}
 
 // Caminho do banco de dados SQLite
 $dbPath = __DIR__ . '/database.sqlite';
