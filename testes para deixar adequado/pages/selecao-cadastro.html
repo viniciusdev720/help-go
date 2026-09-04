@@ -30,5 +30,19 @@
 
     </div>
 
+    <!-- Configuração da API PHP -->
+    <script src="../js/config/api-config.js"></script>
+    <!-- Serviço de Autenticação -->
+    <script src="../js/auth/auth-service.js"></script>
+    <!-- Guardião de Rotas -->
+    <script src="../js/auth/guard.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            if (typeof Guard !== "undefined") {
+                Guard.redirectIfAuthenticated();
+            }
+        });
+    </script>
+
 </body>
 </html>

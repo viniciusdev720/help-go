@@ -295,7 +295,7 @@ const HelpGoStore = (() => {
                     mensagem: "Encontre os melhores profissionais avaliados da sua região agora mesmo.",
                     data: "Hoje",
                     lida: false,
-                    icone: "🎉"
+                    
                 }
             ]));
         }
@@ -307,7 +307,7 @@ const HelpGoStore = (() => {
                     mensagem: "Mariana S. solicitou um serviço de Troca de Disjuntor no Centro.",
                     data: "Há 35 min",
                     lida: false,
-                    icone: "📬"
+                
                 }
             ]));
         }

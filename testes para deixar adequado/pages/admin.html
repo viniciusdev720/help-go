@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HelpGo | Painel de Administração Master</title>
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../css/chat.css">
+</head>
+<body>
+
+    <!-- ================= HEADER ADMIN ================= -->
+    <header class="admin-header">
+        <div class="admin-brand">
+            <h1>HelpGo</h1>
+            <span class="admin-badge">Painel Master ADM</span>
+        </div>
+
+        <div class="admin-user-info">
+            <span class="admin-email-tag">
+                👑 <strong id="adminEmailDisplay">testenedfor@gmail.com</strong>
+            </span>
+            <a href="./tela-cliente.html" class="btn-admin-logout" style="text-decoration:none;">Área do Cliente</a>
+            <a href="./tela-prestador.html" class="btn-admin-logout" style="text-decoration:none;">Área do Prestador</a>
+            <button type="button" class="btn-admin-logout" id="btnAdminLogout">Sair</button>
+        </div>
+    </header>
+
+    <!-- ================= CONTEÚDO PRINCIPAL ================= -->
+    <main class="admin-container">
+
+        <!-- ABAS DE NAVEGAÇÃO -->
+        <div class="admin-tabs">
+            <button class="tab-btn active" data-tab="tab-dashboard">📊 Visão Geral</button>
+            <button class="tab-btn" data-tab="tab-prestadores">🛠️ Prestadores (<span id="countTabPrestadores">0</span>)</button>
+            <button class="tab-btn" data-tab="tab-clientes">👥 Clientes (<span id="countTabClientes">0</span>)</button>
+            <button class="tab-btn" data-tab="tab-solicitacoes">📋 Todas as Solicitações (<span id="countTabSolicitacoes">0</span>)</button>
+            <button class="tab-btn" data-tab="tab-chat">💬 Auditoria de Chat</button>
+        </div>
+
+        <!-- ================= ABA 1: DASHBOARD ================= -->
+        <section class="tab-content active" id="tab-dashboard">
+            <!-- CARDS DE MÉTRICAS -->
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-icon icon-green">🛠️</div>
+                    <div class="metric-data">
+                        <h3 id="statPrestadores">0</h3>
+                        <p>Prestadores Cadastrados</p>
+                    </div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-icon icon-blue">👥</div>
+                    <div class="metric-data">
+                        <h3 id="statClientes">0</h3>
+                        <p>Clientes Cadastrados</p>
+                    </div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-icon icon-purple">📋</div>
+                    <div class="metric-data">
+                        <h3 id="statSolicitacoes">0</h3>
+                        <p>Total de Solicitações</p>
+                    </div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-icon icon-orange">💬</div>
+                    <div class="metric-data">
+                        <h3 id="statMensagens">0</h3>
+                        <p>Mensagens de Chat Trocadas</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TABELAS RÁPIDAS NO DASHBOARD -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 24px;">
+                <div class="admin-section-card">
+                    <div class="section-header-row">
+                        <h2>Últimos Cadastros no Sistema</h2>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>Tipo</th>
+                                    <th>E-mail</th>
+                                    <th>Data</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbodyRecentUsers">
+                                <tr><td colspan="4" style="text-align:center;">Carregando...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="admin-section-card">
+                    <div class="section-header-row">
+                        <h2>Chamados Recentes</h2>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Serviço</th>
+                                    <th>Cliente</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbodyRecentOrders">
+                                <tr><td colspan="3" style="text-align:center;">Carregando...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= ABA 2: PRESTADORES ================= -->
+        <section class="tab-content" id="tab-prestadores">
+            <div class="admin-section-card">
+                <div class="section-header-row">
+                    <h2>Gerenciamento de Prestadores de Serviços</h2>
+                    <input type="text" class="search-input" id="searchPrestadores" placeholder="Buscar por nome, e-mail, categoria...">
+                </div>
+                <div class="table-responsive">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nome</th>
+                                <th>Especialidade</th>
+                                <th>Contato</th>
+                                <th>Localização</th>
+                                <th>Avaliação</th>
+                                <th>Status Conta</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbodyPrestadores">
+                            <tr><td colspan="8" style="text-align:center;">Carregando prestadores...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= ABA 3: CLIENTES ================= -->
+        <section class="tab-content" id="tab-clientes">
+            <div class="admin-section-card">
+                <div class="section-header-row">
+                    <h2>Clientes Cadastrados</h2>
+                    <input type="text" class="search-input" id="searchClientes" placeholder="Buscar por nome, e-mail...">
+                </div>
+                <div class="table-responsive">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nome</th>
+                                <th>E-mail</th>
+                                <th>Telefone</th>
+                                <th>Cidade / UF</th>
+                                <th>Data Cadastro</th>
+                                <th>Status</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbodyClientes">
+                            <tr><td colspan="8" style="text-align:center;">Carregando clientes...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= ABA 4: SOLICITAÇÕES ================= -->
+        <section class="tab-content" id="tab-solicitacoes">
+            <div class="admin-section-card">
+                <div class="section-header-row">
+                    <h2>Todas as Solicitações da Plataforma</h2>
+                    <input type="text" class="search-input" id="searchSolicitacoes" placeholder="Filtrar por serviço, cliente, status...">
+                </div>
+                <div class="table-responsive">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>#ID</th>
+                                <th>Serviço</th>
+                                <th>Cliente</th>
+                                <th>Prestador</th>
+                                <th>Urgência</th>
+                                <th>Orçamento</th>
+                                <th>Status</th>
+                                <th>Data Criação</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbodySolicitacoes">
+                            <tr><td colspan="8" style="text-align:center;">Carregando solicitações...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= ABA 5: CHAT / AUDITORIA ================= -->
+        <section class="tab-content" id="tab-chat">
+            <div class="admin-section-card">
+                <div class="section-header-row">
+                    <h2>Auditoria de Mensagens de Chat</h2>
+                </div>
+                <div class="table-responsive">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Data/Hora</th>
+                                <th>Remetente</th>
+                                <th>Destinatário</th>
+                                <th>Solicitação</th>
+                                <th>Mensagem</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbodyChatLogs">
+                            <tr><td colspan="5" style="text-align:center;">Carregando histórico de mensagens...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Configuração da API e Serviços -->
+    <script src="../js/config/api-config.js"></script>
+    <script src="../js/services/servicos-service.js"></script>
+    <script src="../js/services/prestadores-service.js"></script>
+    <script src="../js/services/pedidos-service.js"></script>
+    <script src="../js/services/chat-service.js"></script>
+    <script src="../js/auth/auth-service.js"></script>
+    <script src="../js/auth/guard.js"></script>
+    <script src="../js/admin.js"></script>
+
+</body>
+</html>
