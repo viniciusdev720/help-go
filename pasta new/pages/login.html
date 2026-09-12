@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HelpGo | Realizar Login</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+    <form id="formLogin">
+        <h1>Realizar Login</h1>
+        <p class="subtitle">Acesse sua conta para continuar</p>
+
+        <input type="email" id="email" name="email" placeholder="E-mail" required>
+        <input type="password" id="senha" name="senha" placeholder="Senha" required>
+
+        <div class="button-group">
+            <button type="submit" class="btn" id="btnLogin">Fazer Login</button>
+        </div>
+
+        <p id="mensagem" class="mensagem"></p>
+
+        <a href="./selecao-cadastro.html" class="btn-link">Não tem uma conta? Cadastre-se</a>
+        <a href="../index.html" class="btn-link">← Voltar ao menu principal</a>
+
+    </form>
+
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- Configuração do Supabase -->
+    <script src="../js/config/supabase.js?v=2"></script>
+    <!-- Serviço de Autenticação -->
+    <script src="../js/auth/auth-service.js?v=2"></script>
+    <!-- Serviço de Prestadores -->
+    <script src="../js/services/prestadores-service.js?v=2"></script>
+    <!-- Guardião de Rotas -->
+    <script src="../js/auth/guard.js?v=2"></script>
+    <!-- Lógica de Login -->
+    <script src="../js/auth/login.js?v=2"></script>
+
+</body>
+
+</html>

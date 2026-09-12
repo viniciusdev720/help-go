@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HelpGo | Selecione seu Cadastro</title>
+    <link rel="stylesheet" href="../css/auth-selection.css">
+</head>
+<body>
+
+    <div class="wrapper">
+
+        <h1>Selecione sua opção de cadastro</h1>
+
+        <div class="card">
+
+            <a href="./cadastro-cliente.html" class="btn-register">
+                Cadastro como cliente
+            </a>
+
+            <a href="./cadastro-prestador.html" class="btn-register">
+                Cadastro como prestador de serviço
+            </a>
+
+        </div>
+
+        <a href="../index.html" class="voltar-menu">
+            ← Voltar ao menu principal
+        </a>
+
+    </div>
+
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- Configuração do Supabase -->
+    <script src="../js/config/supabase.js?v=2"></script>
+    <!-- Serviço de Autenticação -->
+    <script src="../js/auth/auth-service.js?v=2"></script>
+    <!-- Guardião de Rotas -->
+    <script src="../js/auth/guard.js?v=2"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            if (typeof Guard !== "undefined") {
+                Guard.redirectIfAuthenticated();
+            }
+        });
+    </script>
+
+</body>
+</html>
