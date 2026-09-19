@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>HelpGo | Administrador</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+    <form id="formLoginAdmin">
+
+        <h1>HelpGo</h1>
+
+        <p class="subtitle">Área administrativa</p>
+
+        <input
+            type="email"
+            id="email"
+            placeholder="E-mail"
+            required
+        >
+
+        <input
+            type="password"
+            id="senha"
+            placeholder="Senha"
+            required
+        >
+
+        <div class="button-group">
+            <button type="submit" class="btn" id="btnLoginAdmin">Entrar</button>
+        </div>
+
+        <p id="mensagem" class="mensagem"></p>
+
+        <a href="./login.html" class="btn-link">← Voltar ao login principal</a>
+
+    </form>
+
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- Configuração do Supabase -->
+    <script src="../js/config/supabase.js?v=2"></script>
+    <!-- Serviço de Autenticação -->
+    <script src="../js/auth/auth-service.js?v=4"></script>
+    <!-- Guardião de Rotas -->
+    <script src="../js/auth/guard.js?v=2"></script>
+    <!-- Lógica de Login Admin -->
+    <script src="../js/admin/login-admin.js?v=2"></script>
+
+</body>
+
+</html>
