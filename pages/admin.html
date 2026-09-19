@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HelpGo | Painel Administrativo</title>
+    <meta name="description" content="Painel de controle administrativo do HelpGo. Gerencie clientes, prestadores, serviços e solicitações.">
+    <link rel="stylesheet" href="../css/admin.css?v=3">
+</head>
+
+<body>
+
+<div class="admin-layout">
+
+    <!-- =============== SIDEBAR =============== -->
+    <aside class="sidebar" id="sidebar">
+        
+        <div class="sidebar-brand">
+            
+            <img src="../img-p.png" width="110" height="75">
+            <div class="brand-text">
+                <span class="brand-name">HelpGo</span>
+                <span class="brand-badge">Administração</span>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <span class="nav-section-label">Principal</span>
+
+            <button class="nav-item active" data-section="dashboard" id="navDashboard">
+                Visão geral
+            </button>
+
+            <span class="nav-section-label">Usuários</span>
+
+            <button class="nav-item" data-section="clientes" id="navClientes">
+                Clientes
+                <span class="nav-item-badge" id="badgeClientes">0</span>
+            </button>
+
+            <button class="nav-item" data-section="prestadores" id="navPrestadores">
+                Prestadores
+                <span class="nav-item-badge" id="badgePrestadores">0</span>
+            </button>
+
+            <span class="nav-section-label">Operações</span>
+
+            <button class="nav-item" data-section="solicitacoes" id="navSolicitacoes">
+                Solicitações
+                <span class="nav-item-badge" id="badgeSolicitacoes">0</span>
+            </button>
+
+            <button class="nav-item" data-section="servicos" id="navServicos">
+                Serviços
+            </button>
+
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="admin-profile-mini">
+                <div class="admin-avatar-mini" id="sidebarAdminAvatar">A</div>
+                <div class="admin-info-mini">
+                    <div class="admin-name-mini" id="sidebarAdminName">Administrador</div>
+                    <div class="admin-role-mini">Administrador</div>
+                </div>
+                <button class="btn-logout-mini" id="btnLogoutAdmin" title="Sair">Sair</button>
+            </div>
+        </div>
+
+    </aside>
+
+    <!-- =============== CONTEÚDO PRINCIPAL =============== -->
+    <div class="main-content">
+
+        <!-- TOPBAR -->
+        <header class="topbar">
+            <div class="topbar-left">
+                <span class="topbar-title" id="topbarTitle">Visão geral</span>
+                <span class="topbar-breadcrumb">Administração / <span id="topbarBreadcrumb">Resumo</span></span>
+            </div>
+            <div class="topbar-right">
+                <div class="admin-avatar-top" id="topAdminAvatar" title="Administrador">A</div>
+            </div>
+        </header>
+
+        <!-- CONTEÚDO DAS SEÇÕES -->
+        <main class="page-content" id="pageContent">
+
+            <!-- ===== DASHBOARD ===== -->
+            <section id="sectionDashboard">
+
+                <!-- Boas-vindas -->
+                <div class="welcome-admin">
+                    <div class="welcome-text">
+                        <h2>Resumo da plataforma</h2>
+                        <p>Consulte os cadastros e acompanhe as solicitações de serviços.</p>
+                    </div>
+                </div>
+
+                <!-- Cards de estatísticas -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-info">
+                            <div class="stat-label">Clientes</div>
+                            <div class="stat-value" id="statClientes">—</div>
+                            <div class="stat-sub">Total cadastrados</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-info">
+                            <div class="stat-label">Prestadores</div>
+                            <div class="stat-value" id="statPrestadores">—</div>
+                            <div class="stat-sub">Total cadastrados</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-info">
+                            <div class="stat-label">Solicitações</div>
+                            <div class="stat-value" id="statSolicitacoes">—</div>
+                            <div class="stat-sub">Total registradas</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-info">
+                            <div class="stat-label">Serviços</div>
+                            <div class="stat-value" id="statServicos">—</div>
+                            <div class="stat-sub">Categorias ativas</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Listas rápidas -->
+                <div class="section-grid">
+
+                    <!-- Últimos clientes -->
+                    <div class="admin-card">
+                        <div class="admin-card-header">
+                            <div class="admin-card-title">
+                                Últimos Clientes
+                            </div>
+                            <button class="btn-card-action" data-section="clientes" id="btnVerClientes">Ver todos →</button>
+                        </div>
+                        <div class="admin-card-body" id="listaClientesRapida">
+                            <div class="loading-placeholder"><div class="spinner"></div> Carregando...</div>
+                        </div>
+                    </div>
+
+                    <!-- Últimos prestadores -->
+                    <div class="admin-card">
+                        <div class="admin-card-header">
+                            <div class="admin-card-title">
+                                Últimos Prestadores
+                            </div>
+                            <button class="btn-card-action" data-section="prestadores" id="btnVerPrestadores">Ver todos →</button>
+                        </div>
+                        <div class="admin-card-body" id="listaPrestadoresRapida">
+                            <div class="loading-placeholder"><div class="spinner"></div> Carregando...</div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Solicitações recentes -->
+                <div class="admin-card">
+                    <div class="admin-card-header">
+                        <div class="admin-card-title">
+                            Solicitações Recentes
+                        </div>
+                        <button class="btn-card-action" data-section="solicitacoes" id="btnVerSolicitacoes">Ver todas →</button>
+                    </div>
+                    <div class="admin-card-body" id="listaSolicitacoesRapida">
+                        <div class="loading-placeholder"><div class="spinner"></div> Carregando...</div>
+                    </div>
+                </div>
+
+            </section>
+
+            <!-- ===== CLIENTES ===== -->
+            <section id="sectionClientes" style="display:none">
+                <div class="admin-card">
+                    <div class="admin-card-header">
+                        <div class="admin-card-title">Todos os Clientes</div>
+                        <span id="totalClientesLabel" style="font-size:12px;color:var(--text-muted);font-weight:600;"></span>
+                    </div>
+                    <div class="admin-card-body" id="listaClientesCompleta">
+                        <div class="loading-placeholder"><div class="spinner"></div> Carregando...</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===== PRESTADORES ===== -->
+            <section id="sectionPrestadores" style="display:none">
+                <div class="admin-card">
+                    <div class="admin-card-header">
+                        <div class="admin-card-title">Todos os Prestadores</div>
+                        <span id="totalPrestadoresLabel" style="font-size:12px;color:var(--text-muted);font-weight:600;"></span>
+                    </div>
+                    <div class="admin-card-body" id="listaPrestadoresCompleta">
+                        <div class="loading-placeholder"><div class="spinner"></div> Carregando...</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===== SOLICITAÇÕES ===== -->
+            <section id="sectionSolicitacoes" style="display:none">
+                <div class="admin-card">
+                    <div class="admin-card-header">
+                        <div class="admin-card-title">Todas as Solicitações</div>
+                        <span id="totalSolicitacoesLabel" style="font-size:12px;color:var(--text-muted);font-weight:600;"></span>
+                    </div>
+                    <div class="admin-card-body" id="listaSolicitacoesCompleta">
+                        <div class="loading-placeholder"><div class="spinner"></div> Carregando...</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===== SERVIÇOS ===== -->
+            <section id="sectionServicos" style="display:none">
+                <div class="admin-card">
+                    <div class="admin-card-header">
+                        <div class="admin-card-title">Categorias de Serviços</div>
+                        <span id="totalServicosLabel" style="font-size:12px;color:var(--text-muted);font-weight:600;"></span>
+                    </div>
+                    <div class="admin-card-body" id="listaServicosCompleta">
+                        <div class="loading-placeholder"><div class="spinner"></div> Carregando...</div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+</div>
+
+<!-- Toast -->
+<div class="toast-admin" id="toastAdmin"></div>
+
+<!-- Supabase CDN -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<!-- Configuração do Supabase -->
+<script src="../js/config/supabase.js?v=2"></script>
+<!-- Serviço de Autenticação -->
+<script src="../js/auth/auth-service.js?v=4"></script>
+<!-- Guardião de Rotas -->
+<script src="../js/auth/guard.js?v=2"></script>
+<!-- Controlador do Painel Admin -->
+<script src="../js/admin/admin.js?v=4"></script>
+
+</body>
+</html>

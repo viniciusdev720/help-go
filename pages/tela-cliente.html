@@ -7,7 +7,7 @@
 
     <title>HelpGo | Área do Cliente</title>
 
-    <link rel="stylesheet" href="../css/tela-cliente.css">
+    <link rel="stylesheet" href="../css/tela-cliente.css?v=3">
 </head>
 
 <body>
@@ -16,7 +16,6 @@
     <header class="header">
 
         <div class="logo-area">
-            
             <div>
                 <h2>HelpGo</h2>
                 <span>Serviços perto de você</span>
@@ -26,16 +25,15 @@
         <nav class="menu">
             <a href="#" class="active">Início</a>
             <a href="#solicitar">Solicitar</a>
-            <a href="#solicitacoes">Minhas solicitações</a>
             <a href="#profissionais">Profissionais</a>
         </nav>
 
         <div class="user-area">
 
             <!-- NOTIFICAÇÕES -->
-            <div class="notif-wrapper">
+            <div class="notif-wrapper" hidden>
                 <button class="notification" id="notifBtnClient" aria-label="Notificações">
-                    🔔
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg>
                     <span id="notifBadgeClient">0</span>
                 </button>
 
@@ -67,7 +65,6 @@
             </div>
 
             <div class="user-menu" id="userMenu">
-                <a href="#solicitacoes">Minhas solicitações</a>
                 <a href="#profissionais">Profissionais avaliados</a>
                 <a href="#" id="logout">Sair</a>
             </div>
@@ -83,11 +80,11 @@
         <!-- ================= BARRA DE ATIVIDADE AO VIVO ================= -->
         <div class="live-activity-bar">
             <div class="live-pulse-badge">
-                <span class="live-dot"></span>
-                <span id="liveOnlineCount">18 Profissionais Online Agora</span>
+                
+                <span id="liveOnlineCount">Profissionais Online na Sua Região</span>
             </div>
             <div class="live-ticker-text">
-                <span>Atendimento rápido com profissionais verificados na sua região</span>
+                <span>Profissionais cadastrados e disponíveis para atendimento</span>
             </div>
         </div>
 
@@ -112,7 +109,7 @@
             </div>
 
             <div class="welcome-icon">
-                <img src="../img p.png" width="125" height="80" alt="HelpGo">
+                <img src="../img-p.png" width="125" height="80" alt="HelpGo">
             </div>
 
         </section>
@@ -132,39 +129,27 @@
 
             <form id="serviceForm">
 
-                <!-- SERVIÇO -->
+                <!-- SERVIÇO (CARREGADO DINAMICAMENTE) -->
                 <div class="form-group">
                     <label for="service">
                         Qual serviço você precisa?
                     </label>
 
                     <select id="service" required>
-                        <option value="">Selecione um serviço</option>
-                        <option value="eletricista">⚡ Eletricista</option>
-                        <option value="encanador">🔧 Encanador</option>
-                        <option value="pintor">🎨 Pintor</option>
-                        <option value="ar-condicionado">❄️ Instalação de ar-condicionado</option>
-                        <option value="chaveiro">🔑 Chaveiro</option>
-                        <option value="marceneiro">🪚 Marceneiro</option>
-                        <option value="pedreiro">🧱 Pedreiro</option>
-                        <option value="jardineiro">🌱 Jardineiro</option>
-                        <option value="limpeza">🧹 Limpeza</option>
-                        <option value="tecnico">💻 Técnico de informática</option>
-                        <option value="outro">➕ Outro serviço</option>
+                        <option value="">Carregando serviços...</option>
                     </select>
                 </div>
 
                 <!-- DESCRIÇÃO -->
                 <div class="form-group">
                     <label for="description">
-                        Descreva o que você precisa
+                        Descreva o que você precisa (opcional)
                     </label>
 
                     <textarea
                         id="description"
                         maxlength="500"
-                        placeholder="Ex.: Preciso consertar um vazamento na cozinha..."
-                        required></textarea>
+                        placeholder="Ex.: Preciso consertar um vazamento na cozinha..."></textarea>
 
                     <div class="counter">
                         <span id="counter">0</span>/500
@@ -201,16 +186,16 @@
                         </label>
 
                         <select id="urgency">
-                            <option value="normal">🟢 Normal</option>
-                            <option value="urgente">🟡 Urgente</option>
-                            <option value="emergencia">🔴 Emergência</option>
+                            <option value="normal"> Normal</option>
+                            <option value="urgente"> Urgente</option>
+                            <option value="emergencia"> Emergência</option>
                         </select>
                     </div>
                 </div>
 
                 <!-- ENDEREÇO -->
                 <div class="address-box" id="addressBox">
-                    <span></span>
+                    
                     <div>
                         <strong id="addressText">
                             Informe seu CEP para localizar o endereço.
@@ -240,7 +225,7 @@
 
                     <div class="form-group">
                         <label for="date">
-                            Quando precisa?
+                            Dia do atendimento
                         </label>
 
                         <input
@@ -251,6 +236,12 @@
                 </div>
 
                 <!-- BOTÃO -->
+                <div class="form-group">
+                    <label for="time">Horário desejado</label>
+                    <input type="time" id="time" required step="60" aria-describedby="scheduleHelp">
+                    <small id="scheduleHelp">Escolha o dia e o horário. A disponibilidade será confirmada pelo prestador.</small>
+                </div>
+
                 <button
                     type="submit"
                     class="request-button">
@@ -258,6 +249,20 @@
                 </button>
 
             </form>
+
+            <section class="inline-search-results" id="professionalSearchResults" hidden
+                aria-labelledby="searchResultsTitle" tabindex="-1">
+                <h3 id="searchResultsTitle">Profissionais disponíveis</h3>
+                <p id="searchResultsSubtitle" role="status" aria-live="polite"></p>
+                <div class="search-request-summary" id="searchRequestSummary"></div>
+                <div class="matching-pros-container" id="matchingProsContainer"></div>
+                <div class="modal-search-actions">
+                    <button type="button" class="btn-confirm-order" id="btnConfirmOrder" disabled>
+                        Finalizar solicitação no WhatsApp
+                    </button>
+                    <button type="button" class="btn-cancel-order" id="btnCancelOrder">Editar solicitação</button>
+                </div>
+            </section>
 
         </section>
 
@@ -273,65 +278,26 @@
                 <a href="#solicitar">Ver todos →</a>
             </div>
 
+            <!-- Grid preenchido dinamicamente via banco de dados -->
             <div class="services-grid">
-                <button class="service-card" data-service="eletricista">
-                    <div class="service-icon green">⚡</div>
-                    <strong>Eletricista</strong>
-                    <span>Profissionais verificados</span>
-                </button>
-
-                <button class="service-card" data-service="encanador">
-                    <div class="service-icon blue">🔧</div>
-                    <strong>Encanador</strong>
-                    <span>Reparos hidráulicos</span>
-                </button>
-
-                <button class="service-card" data-service="pintor">
-                    <div class="service-icon orange">🎨</div>
-                    <strong>Pintor</strong>
-                    <span>Pintura residencial</span>
-                </button>
-
-                <button class="service-card" data-service="ar-condicionado">
-                    <div class="service-icon cyan">❄️</div>
-                    <strong>Ar-condicionado</strong>
-                    <span>Instalação e manutenção</span>
-                </button>
-
-                <button class="service-card" data-service="chaveiro">
-                    <div class="service-icon purple">🔑</div>
-                    <strong>Chaveiro</strong>
-                    <span>Atendimento 24h</span>
-                </button>
-
-                <button class="service-card" data-service="limpeza">
-                    <div class="service-icon yellow">🧹</div>
-                    <strong>Limpeza</strong>
-                    <span>Para sua casa ou pós-obra</span>
-                </button>
+                <!-- Renderizado via JS -->
             </div>
 
         </section>
 
 
-        <!-- ================= PROFISSIONAIS VERIFICADOS / NOTAS ================= -->
+        <!-- ================= PROFISSIONAIS CADASTRADOS ================= -->
         <section class="section" id="profissionais">
 
             <div class="section-header">
                 <div>
-                    <h2>Profissionais em Destaque na Sua Região </h2>
-                    <p>Profissionais verificados, com notas reais de clientes e disponíveis agora</p>
+                    <h2>Prestadores cadastrados</h2>
+                    <p>Conheça os profissionais e suas profissões</p>
                 </div>
 
-                <!-- Filtros de categoria -->
+                <!-- Filtros de categoria dinâmicos -->
                 <div class="prestadores-filter-pills" id="prestadoresFilter">
                     <button class="pill-btn active" data-category="todos">Todos</button>
-                    <button class="pill-btn" data-category="eletricista">Eletricistas</button>
-                    <button class="pill-btn" data-category="encanador">Encanadores</button>
-                    <button class="pill-btn" data-category="pintor">Pintores</button>
-                    <button class="pill-btn" data-category="ar-condicionado">Ar-Condicionado</button>
-                    <button class="pill-btn" data-category="chaveiro">Chaveiros</button>
-                    <button class="pill-btn" data-category="limpeza"> Limpeza</button>
                 </div>
             </div>
 
@@ -343,30 +309,9 @@
         </section>
 
 
-        <!-- ================= MINHAS SOLICITAÇÕES ================= -->
-        <section class="section" id="solicitacoes">
-
-            <div class="section-header">
-                <div>
-                    <h2>Minhas solicitações</h2>
-                    <p>Acompanhe o andamento dos seus pedidos em tempo real</p>
-                </div>
-                <span class="badge-count" id="clientRequestsCount">0 solicitações</span>
-            </div>
-
-            <!-- Lista de solicitações dinâmicas -->
-            <div class="requests" id="clientRequestsList">
-                <!-- Preenchido dinamicamente via JS -->
-            </div>
-
-        </section>
-
-
         <!-- ================= SEGURANÇA ================= -->
         <section class="security">
-            <div class="security-icon">
-                🛡️
-            </div>
+            
 
             <div>
                 <h3>Contrate com segurança total</h3>
@@ -376,48 +321,13 @@
             </div>
 
             <div class="security-items">
-                <span>✓ Profissionais avaliados com estrelas</span>
-                <span>✓ Status online e resposta rápida</span>
-                <span>✓ Garantia de satisfação HelpGo</span>
+                <span> Profissionais avaliados com estrelas</span>
+                <span> Status online e resposta rápida</span>
+                <span> Garantia de satisfação HelpGo</span>
             </div>
         </section>
 
     </main>
-
-
-    <!-- ================= MODAL DE CONFIRMAÇÃO / BUSCA DE PROFISSIONAIS ================= -->
-    <div class="modal" id="modal">
-        <div class="modal-content modal-search-content">
-            <button class="close-modal" id="closeModal">×</button>
-
-            <div class="modal-search-header">
-                <div class="radar-animation">
-                    <div class="radar-ring"></div>
-                    <div class="radar-ring delay"></div>
-                    <div class="modal-icon">🔎</div>
-                </div>
-
-                <h2 id="modalSearchTitle">Procurando profissionais disponíveis...</h2>
-                <p id="modalSearchSubtitle">
-                    Encontramos profissionais qualificados próximos ao seu endereço prontos para atender!
-                </p>
-            </div>
-
-            <!-- Lista de profissionais correspondentes encontrados -->
-            <div class="matching-pros-container" id="matchingProsContainer">
-                <!-- Inserido dinamicamente via JS -->
-            </div>
-
-            <div class="modal-search-actions">
-                <button type="button" class="btn-confirm-order" id="btnConfirmOrder">
-                    🚀 Confirmar e Enviar Pedido para Prestadores
-                </button>
-                <button type="button" class="btn-cancel-order" id="btnCancelOrder">
-                    Voltar e Editar
-                </button>
-            </div>
-        </div>
-    </div>
 
 
     <!-- ================= MODAL DE PERFIL COMPLETO DO PRESTADOR ================= -->
@@ -469,9 +379,9 @@
             <button class="close-modal" id="closeModalAvaliacao">×</button>
 
             <div class="review-modal-header">
-                <div class="review-icon-big">⭐</div>
+                
                 <h2>Avaliar Atendimento</h2>
-                <p id="reviewPrestadorName">Como foi o serviço realizado por Carlos Silva?</p>
+                <p id="reviewPrestadorName">Como foi o serviço realizado pelo profissional?</p>
             </div>
 
             <form id="formAvaliacao">
@@ -485,7 +395,7 @@
                         <span class="star" data-val="4">★</span>
                         <span class="star active" data-val="5">★</span>
                     </div>
-                    <span class="rating-text-feedback" id="ratingTextFeedback">5.0 - Excelente! ⭐⭐⭐⭐⭐</span>
+                    <span class="rating-text-feedback" id="ratingTextFeedback">5.0 - Excelente! </span>
                 </div>
 
                 <!-- Tags Rápidas de Elogio -->
@@ -493,7 +403,7 @@
                     <label>O que mais se destacou?</label>
                     <div class="tags-options" id="tagsOptions">
                         <button type="button" class="tag-opt active" data-tag="Super Pontual">⏰ Super Pontual</button>
-                        <button type="button" class="tag-opt active" data-tag="Trabalho Impecável">💎 Trabalho Impecável</button>
+                        <button type="button" class="tag-opt active" data-tag="Trabalho Impecável"> Trabalho Impecável</button>
                         <button type="button" class="tag-opt" data-tag="Preço Justo">Preço Justo</button>
                         <button type="button" class="tag-opt" data-tag="Muito Educado">Muito Educado</button>
                         <button type="button" class="tag-opt" data-tag="Rápido e Eficiente">Rápido e Eficiente</button>
@@ -508,7 +418,7 @@
 
                 <div class="review-modal-actions">
                     <button type="submit" class="btn-submit-review">
-                        ✓ Enviar Avaliação
+                         Enviar Avaliação
                     </button>
                 </div>
             </form>
@@ -518,7 +428,7 @@
 
     <!-- ================= TOAST DE NOTIFICAÇÃO FLUTUANTE ================= -->
     <div class="toast-client" id="toastMessageClient">
-        <span class="toast-icon" id="toastIconClient">🔔</span>
+        
         <div class="toast-body">
             <strong id="toastTitleClient">Notificação</strong>
             <p id="toastTextClient">Ação realizada com sucesso!</p>
@@ -529,11 +439,18 @@
     <!-- Supabase CDN -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <!-- Configuração do Supabase -->
-    <script src="../js/supabase.js"></script>
-    <!-- Data Store & Sincronização em Tempo Real -->
-    <script src="../js/helpgo-store.js"></script>
-    <!-- Script da Tela do Cliente -->
-    <script src="../js/tela-cliente.js"></script>
+    <script src="../js/config/supabase.js?v=2"></script>
+    <!-- Camada de Serviços -->
+    <script src="../js/services/servicos-service.js?v=2"></script>
+    <script src="../js/services/prestadores-service.js?v=6"></script>
+    <script src="../js/services/pedidos-service.js?v=5"></script>
+    <script src="../js/services/whatsapp-service.js?v=2"></script>
+    <!-- Autenticação -->
+    <script src="../js/auth/auth-service.js?v=4"></script>
+    <!-- Guardião de Rotas -->
+    <script src="../js/auth/guard.js?v=2"></script>
+    <!-- Controlador da Tela do Cliente -->
+    <script src="../js/cliente/tela-cliente.js?v=13"></script>
 
 </body>
 

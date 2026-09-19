@@ -1,0 +1,49 @@
+.profile-trigger { cursor: pointer; }
+.profile-trigger:focus-visible { outline: 2px solid #087443; outline-offset: 4px; }
+.profile-avatar-image { width: 100%; height: 100%; object-fit: cover; border-radius: inherit; display: block; }
+#userAvatar, #providerAvatar, #profileAvatarLarge, #sidebarAdminAvatar, #topAdminAvatar { overflow: hidden; flex-shrink: 0; }
+.user-menu .profile-settings-link { width: 100%; text-align: left; border: 0; background: transparent; padding: 11px; border-radius: 6px; color: #37453d; cursor: pointer; font: inherit; font-size: 13px; }
+.user-menu .profile-settings-link:hover { background: #eff9f3; }
+.admin-profile-menu { position: fixed; z-index: 1100; width: 225px; padding: 7px; background: white; border: 1px solid #dce3df; border-radius: 6px; box-shadow: 0 8px 24px #00000014; }
+.admin-profile-menu[hidden] { display: none; }
+.admin-profile-menu button { width: 100%; padding: 12px; border: 0; background: transparent; text-align: left; cursor: pointer; color: #24372d; font: inherit; }
+.admin-profile-menu button:hover { background: #f0f5f2; }
+.profile-settings { margin: auto; padding: 0; width: min(640px, calc(100% - 32px)); max-height: calc(100dvh - 32px); border: 1px solid #dce3df; border-radius: 10px; background: #fff; color: #22352b; box-shadow: 0 20px 70px #00000030; font: 14px/1.5 'Segoe UI', sans-serif; }
+.profile-settings::backdrop { background: #0f211a99; }
+.profile-settings *, .profile-settings *::before, .profile-settings *::after { box-sizing: border-box; }
+.profile-settings-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; padding: 24px; border-bottom: 1px solid #e6ece8; }
+.profile-settings h2 { margin: 0; font-size: 21px; font-weight: 650; color: #22352b; }
+.profile-settings p { margin: 5px 0 0; color: #64746b; }
+.profile-settings button, .profile-settings input { font: inherit; }
+.profile-settings button { cursor: pointer; }
+.profile-settings button:disabled { cursor: wait; opacity: .6; }
+.profile-settings button:focus-visible, .profile-settings input:focus-visible, .admin-profile-menu button:focus-visible { outline: 2px solid #087443; outline-offset: 3px; }
+.profile-settings-close { flex-shrink: 0; padding: 6px 10px; border: 1px solid #dce3df; border-radius: 5px; background: white; color: #43564a; }
+.profile-settings-body { padding: 24px; }
+.profile-settings fieldset { border: 0; padding: 0; margin: 0; min-width: 0; }
+.profile-settings legend { font-size: 16px; font-weight: 600; margin-bottom: 14px; }
+.profile-settings label { display: block; font-weight: 600; margin-bottom: 6px; }
+.profile-settings input:not([type=file]) { display: block; width: 100%; min-height: 42px; margin: 0; padding: 10px 12px; border: 1px solid #cad5ce; border-radius: 5px; color: #22352b; background: white; }
+.profile-settings input[readonly] { background: #f5f7f6; color: #64746b; }
+.profile-settings-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 22px; }
+.profile-settings-wide { grid-column: 1 / -1; }
+.profile-photo-row { display: flex; align-items: center; gap: 20px; }
+.profile-photo-preview { width: 80px; height: 80px; border-radius: 50%; overflow: hidden; flex-shrink: 0; display: grid; place-items: center; background: #e7f1eb; color: #246040; font-size: 28px; font-weight: 600; }
+.profile-photo-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.profile-settings .profile-photo-note { font-size: 12px; margin-top: 9px; }
+.profile-settings-primary, .profile-settings-secondary { padding: 10px 16px; border-radius: 5px; border: 1px solid #ccd8d0; background: white; color: #344f40; font-weight: 600; }
+.profile-settings-primary { background: #087443; color: white; border-color: #087443; }
+.profile-settings-primary:hover { background: #075f38; }
+.profile-settings-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 22px; }
+.profile-settings-password { border-top: 1px solid #e1e8e3; margin-top: 28px; padding-top: 24px; }
+.profile-settings-message { min-height: 22px; margin: 12px 0 0; font-size: 13px; }
+.profile-settings .profile-settings-message[data-error=true] { color: #b42318; }
+.profile-settings .profile-settings-message[data-error=false] { color: #087443; }
+@media (max-width: 520px) {
+    .profile-settings-header, .profile-settings-body { padding: 18px; }
+    .profile-settings-fields { grid-template-columns: 1fr; gap: 14px; }
+    .profile-photo-row { gap: 12px; }
+    .profile-photo-preview { width: 64px; height: 64px; }
+    .profile-photo-actions { flex-direction: column; align-items: flex-start; }
+    .profile-settings h2 { font-size: 18px; }
+}
